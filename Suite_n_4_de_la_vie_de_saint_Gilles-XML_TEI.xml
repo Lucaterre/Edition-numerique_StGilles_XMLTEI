@@ -179,11 +179,11 @@
                   <scriptDesc corresp="#mainHand">
                      <scriptNote>
                         <p>Écriture gothique textualis du <date when="1300">XIVe siècle</date>
-                           utilisée par une unique main</p>
+                           utilisée par une unique main.</p>
                         <p>Réglure à la mine de plomb, à la pointe sèche ou à l'encre.</p>
                         <p>Les initiales ornées et les majuscules dans le texte, quelques fois
                            réhaussées de jaune, constituent le début d'un paragraphe.</p>
-                        <p>Les minuscules sont régulières et sérrées</p>
+                        <p>Les minuscules sont régulières et sérrées.</p>
                      </scriptNote>
                   </scriptDesc>
                   <decoDesc>
@@ -510,17 +510,17 @@
                   <!-- les éléments <hi/> et @rend encode une portion du <p> qui est indentée -->
                   <hi rend="indent">
                      <!-- utilisation de <lb> pour signifier les débuts de ligne et opt. @break pour signifier un mot rejeté -->
-                     <lb facs="seg_1"/>&In-Q;ant il or&ebar-en;t a&smallSlong;&smallSlong;ez
-                     a&space;lui parle <lb facs="seg_2"/>de pluseurs cho&smallSlong;es il
-                     &smallSlong;e&space;mi&smallSlong;tr&ebar-en;t <lb facs="seg_3"/>en
+                     <lb facs="#seg_1"/>&In-Q;ant il or&ebar-en;t a&smallSlong;&smallSlong;ez
+                     a&space;lui parle <lb facs="#seg_2"/>de pluseurs cho&smallSlong;es il
+                     &smallSlong;e&space;mi&smallSlong;tr&ebar-en;t <lb facs="#seg_3"/>en
                      &smallSlong;es o&minRrotunda;oi&smallSlong;ons &et-tironien; a&p-acute-pre;s
                      &smallSlong;en parti</hi>
-                  <lb facs="seg_4" break="no"/>rent &In-Q;ant il &smallSlong;enfur&ebar-en;t partiz
-                  li &smallSlong;einz <lb facs="seg_5"/>hom &smallSlong;enti qil e&smallSlong;toit
-                  molt afebloiez por <lb facs="seg_6"/>la doleur de &smallSlong;a plaie
+                  <lb facs="#seg_4" break="no"/>rent &In-Q;ant il &smallSlong;enfur&ebar-en;t partiz
+                  li &smallSlong;einz <lb facs="#seg_5"/>hom &smallSlong;enti qil e&smallSlong;toit
+                  molt afebloiez por <lb facs="#seg_6"/>la doleur de &smallSlong;a plaie
                   &smallSlong;i p&minRrotunda;oia a&space;&nostre; &smallSlong;eig<lb break="no"
-                     facs="seg_7"/>neur &In-Q;e &i-dipl-j-norm;ames en ce&smallSlong;t
-                  &smallSlong;iecle ne&space;li&space;fu&ligaturelgST; <lb facs="seg_8"/>plus
+                     facs="#seg_7"/>neur &In-Q;e &i-dipl-j-norm;ames en ce&smallSlong;t
+                  &smallSlong;iecle ne&space;li&space;fu&ligaturelgST; <lb facs="#seg_8"/>plus
                   gr&abar-an;t &smallSlong;ante rendue tant com il ue <lb break="no" facs="#seg_9"
                   />&smallSlong;qi&ligaturelgST; &In-E;t li rois &u-dipl-v-norm;enoit molt
                   so&u-dipl-v-norm;ent a <lb facs="#seg_10"/>lui a&p-acute-pre;s ce

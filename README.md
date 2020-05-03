@@ -2,7 +2,7 @@
 
 Projet d'une édition XML-TEI du Ms411 de la BnF dans le cadre du évaluation du master TNAH
 
-![Edition logo](img/BDNF-stGilles.png)
+![Edition logo](images/BDNF-stGilles.png)
 
 ## Consignes générales
 

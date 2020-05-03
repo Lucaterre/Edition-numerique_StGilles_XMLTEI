@@ -3,77 +3,732 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xs tei"
     version="2.0">
-    
-    <xsl:output 
-        method="html" 
-        indent="yes" 
-        encoding="UTF-8"
-    />
-   
-   <!-- Pour éviter les espaces --> 
-    
-    <xsl:strip-space elements="*"/> 
-    
+
+    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
+
+    <!-- Pour éviter les espaces -->
+
+    <xsl:strip-space elements="*"/>
+
     <xsl:template match="/">
-        <html>
+
+        <!-- déclaration des variables -->
+
+        <xsl:variable name="title" select="descendant::titleStmt/title[@type = 'main_title']/text()"/>
+        <xsl:variable name="subtitle"
+            select="descendant::titleStmt/title[@type = 'subtitle']/text()"/>
+
+        <!-- Template HTML one-page -->
+
+        <html lang="fr">
             <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-                <title>
-                    <xsl:value-of select="//titleStmt/title[@type='main_title']"/>-
-                    <xsl:value-of select="//titleStmt/title[@type='subtitle']"/>
-                </title>
+                <meta charset="UTF-8"/>
+                <meta name="description">
+                    <xsl:attribute name="content"
+                        select="normalize-space(descendant::publicationStmt/p)"/>
+                </meta>
+                <meta name="keywords"
+                    content="édition numérique, XML, Text Encoding Initiative, Vie de saint Gilles, Wauchier de Denain, master TNAH, Ecole des Chartes"/>
+                <meta name="author" content="Lucas Terriel"/>
+                <meta name="viewport"
+                    content="width-device-with, initial-scale-1.0, maximum-scale-1.0, minimal-ui"/>
+
+                <title>Edition XML-TEI de <xsl:value-of select="concat($title, ' - ', $subtitle)"
+                    /></title>
+
+                <!-- Lien vers CDN CSS et Fonts -->
+
+                <link rel="stylesheet"
+                    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+                    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+                    crossorigin="anonymous"/>
+                <link rel="stylesheet"
+                    href="https://fonts.googleapis.com/css?family=Almendra+SC|Roboto"/>
+                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"/>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"/>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"/>
+
+                <!-- Matériel CSS add-ons -->
+
+                <style>
+                    /** Style général **/
+                    
+                    .part_header {
+                        background-color: #7b241c;
+                    }
+                    
+                    .font-header {
+                        font-family: 'MedievalSharp', cursive;
+                    }
+                    
+                    .titre_head {
+                        font-family: 'Almendra SC', serif;
+                        font-size: 70px;
+                    }
+                    
+                    .vertical-line {
+                        border-left: 2px solid #000;
+                        display: inline-block;
+                        height: 20px;
+                        margin: 0 20px;
+                    }
+                    
+                    .menu_header {
+                        padding: 20px 20px 20px 20px;
+                        position: relative;
+                        margin-left: 270px;
+                        text-align: justify;
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    
+                    .page-footer {
+                        display: flow-root;
+                    }
+                    
+                    .footer-copyright {
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    
+                    .titre_div {
+                        font-family: 'Almendra SC', serif;
+                    }
+                    
+                    .scroll-div {
+                        overflow: auto;
+                        height: 550pt;
+                        width: 295pt;
+                        background-color: #DEB887;
+                        padding: 15px;
+                        text-align: justify;
+                        border: 2.5px solid black;
+                        font-size: 15px;
+                    }
+                    
+                    .img-fluide {
+                        padding: 1px 3px 4px 5px;
+                        margin-left: 13px;
+                    }
+                    
+                    .edition_centre {
+                        padding: 0 0 0 86px;
+                    }
+                    
+                    
+                    /* Style pour le hr Shine */
+                    
+                    .shine {
+                        height: 20px;
+                        width: 60%;
+                        background-image: radial-gradient(
+                    farthest-side at 50% -50%, 
+                    hsla(0, 0%, 0%, 0.5), 
+                    hsla(0, 0%, 0%, 0));
+                        position: relative;
+                    }
+                    
+                    .shine::before {
+                        height: 1px;
+                        position: absolute;
+                        top: -1px;
+                        left: 0;
+                        right: 0;
+                        background-image: linear-gradient(
+                    90deg, 
+                    hsla(0, 0%, 0%, 0), 
+                    hsla(0, 0%, 0%, 0.75) 50%, 
+                    hsla(0, 0%, 0%, 0));
+                    }</style>
+                <style>
+                    
+                    /** Style pour facsimilé interactif **/
+                    /** Hack du dépot : @ **/
+                    
+                    h1 {
+                    text-align: center;
+                    }
+                    
+                    .tabs {
+                    overflow: auto;
+                    border: 1px solid darkgrey;
+                    background-color: gainsboro;
+                    margin:5px 240px;
+                    }
+                    
+                    .tabs button {
+                    background-color: inherit;
+                    padding: 0.5em;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    font-size: 1em;
+                    }
+                    
+                    .tabs button:hover {
+                    background-color: silver;
+                    }
+                    
+                    .tabs button.active {
+                    background-color: darkgrey;
+                    }
+                    
+                    .section-wrapper {
+                    position: relative;
+                    padding: 10px 0px 0px 240px;
+      
+                    }
+                    
+                    div.zone {
+                    position: absolute;
+                    }
+                    
+                    div.zone &gt; span {
+                    position: relative;
+                    display: block;
+                    overflow-y: auto;
+                    visibility: hidden;
+                    background-color: white;
+                    font-family: Georgia, serif;
+                    padding: 0px 5px;
+                    }
+                    
+                    .zone:hover span {
+                    visibility: visible;
+                    }
+                    
+                    /* Original version (ov) */
+                    .ov {
+                    color: crimson;
+                    }
+                    
+                    /* Regularized version (rv) */
+                    .rv {
+                    color: mediumseagreen;
+                    }
+                    
+                    /* Not shown (ns) */
+                    .ns {
+                    display: none;
+                    }
+                    
+                </style>
+
             </head>
             <body>
-                <h1>Edition électronique en XML-TEI de la <xsl:value-of select="//titleStmt/title[@type='main_title']"/> - <xsl:value-of select="//titleStmt/title[@type='subtitle']"/></h1>
-                <hr/>
-                <!-- <span> pour les métadonnées -->
-                <span class="metadonnées">
-                    <p id="date"><i><xsl:value-of select="//head/origDate"/></i></p>
-                    <h2 id="titre">La vie de Saint Gilles</h2>
-                    <p id="Orig"><b>Orig.</b> Paris, Bnf, Departement des manuscrits, Ms.fr.411, f.173a-f.173c</p>
-                    
-                </span>
-                <!-- <div> du fac-similé intéractif a centré -->
-                <div class="Fac-similé_interactif">
-                    <span id="image"><img src="100/faxmini.jpg" alt="image du dossier" border="1"/></span>
+
+
+                <!-- header -->
+
+                <div class="jumbotron jumbotron-fluid part_header">
+
+                    <div class="container">
+
+                        <h1 class="titre_head">
+                            <xsl:value-of select="concat($title, ' - ', $subtitle)"/>
+                        </h1>
+
+                        <br/>
+                        <br/>
+                        <hr class="shine"/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <!-- Menu : Navbar -->
+
+                        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#metadonnees">Description du
+                                            manuscrit</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#facsimile">Facsimilé
+                                            interactif</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#edition">Edition allographétique
+                                            et régularisée</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </nav>
+                    </div>
                 </div>
-                <table width="98%" border="0">
-                    <tr valign="top">
-                        <th width="10%"></th>
-                        <th valign="middle" align="left" width="45%"> Texte original </th>
-                        <th valign="middle" align="left" width="45%"> Traduction </th>
-                    </tr>
-                    <tr valign="top">
-                        <td width="10%"></td>
-                        <td>
-                            
-                            <p>De tribus generibus lectorum.<br/> Satis ut puto aperte demonstratum est<br/> provectis et aliquid amplius de se promittentibus<br/> non idem esse propositum cum incipientibus.<br/> Sed sicut illis aliquid licite conceditur, <br/> quod isti sine culpa minime agere possunt, <br/> ita eciam ab istis aliquid requiri<br/> Quo illi nondum obligati sunt.<br/> Nunc igitur ad promissa solvenda redeo <br/> ut videlicet ostendam qualiter eis divina scriptura legenda sit,<br/> qui adhuc in ea solam querunt scientiam.<br/> Sunt nonnulli qui divine scripture scientiam appetunt, <br/> ut vel divitias congregent, vel honores obtineant, <br/> vel famam adquirant, <br/> quorum intentio quantum perversa, tantum est miseranda<br/> Sunt rursus alii <br/> quos audire verba Dei et opera ejus discere delectat, <br/> non quia salutifera, sed quia mirabilia sunt.<br/> Scrutari archana et inaudita cognoscere volunt, <br/> multa scire et nil facere.<br/> In vanum mirantur potentiam, qui non amant misericordiam. <br/> Hos ergo quid aliud agere dicam<br/> quam preconia divina in fabulas commutare ? <br/> Sic theatralibus ludis, sic scenicis carminibus intedere solemus, <br/> ut scilicet auditum pascamus, non animum.<br/> Hujusmodi tamen non tam confundi <br/> quam adjuvari oportet censeo,<br/> quorum voluntas non utique maligna est, <br/> sed improvida.<br/> Alii vero idcirco sacram scripturam legunt<br/> ut secundum Apostoli preceptum<br/>
-                                <a href="#" OnMouseOver="AffBulle('I Pierre 3, 5')" OnMouseOut="HideBulle()" OnClick="return false">parati sint omni poscenti reddere rationem <br/> de ea fide in qua positi sunt</a>, <br/> ut videlicet inimicos veritatis fortiter destruant, <br/> minus eruditos doceant, <br/> ipsi perfectius viam veritatis agnoscant <br/> et altius Dei secreta intelligentes <br/> artius ament,<br/> quorum nimirum devotio laudanda est et imitatione digna.<br/> Tria igitur sunt genera hominum sacram scripturam legentium<br/> quorum primi quidem miserandi sunt, <br/> secundi juvandi, tercii laudandi.<br/> Nos vero quia omnibus consulere intendimus, <br/> quod bonum est in omnibus augeri cupimus<br/> et quod perversum commutari. <br/> Omnes intelligere volumus quod dicimus, <br/> omnes facere quod hortamur.<br/>
-                            </p>
-                            
-                            <p> Liber sextus. Quomodo legenda sit scriptura sacra <br/> querentibus scientiam in ea.<br/> Duo tibi lector, ordinem scilicet et modum, propono, <br/> que, si diligenter inspexeris, <br/> facile tibi iter legendi patebit.<br/> In horum vero consideratione, <br/> nec omnia tuo ingenio relinquam, <br/> neque per meam diligentiam satis tibi fieri promitto, <br/> sed sic quedam breviter prelibando transcurram<br/> ut et posita aliqua quibus erudiaris <br/> et aliqua pretermissa quibus exercearis invenias.<br/> Ordinem legendi supra quadrifarium esse commemoravi, <br/> aliud in disciplinis , alium in libris, <br/> alium in narratione atque alium in expositione, <br/> Que qualiter in divina scriptura assignanda sint<br/> nondum ostendi.</p>
-                            <p><br/> De ordine qui est in disciplinis.<br/> Primum ergo hunc ordinem qui queritur in disciplinis<br/> inter <a href="#" OnMouseOver="AffBulle('une des divisions classiques des différents sens de l’Écriture. L’histoire s’attache au sens littéral, l’allégorie au sens figuré, notamment christologique, et la tropologie au sens moral.')" OnMouseOut="HideBulle()" OnClick="return false">hystoriam, allegoriam, tropologiam</a>,<br/> divinum lectorem considerare oportet, <br/> que horum alia ordine legendi precedant, <br/> in quo illud ad memoriam revocare non inutile est<br/> quod in edificiis fieri conspicitur, <br/> ubi primum quidem fundamentum ponitur,<br/> dehinc fabrica super edificatur, <br/> ad ultimum consummato opere<br/> domus colore super ducto vestitur. </p>
-                            <p><br/> De hystoria. Sic nimirum in doctrina fieri oportet<br/> ut videlicet prius historiam discas<br/> et rerum gestarum veritatem a principio repetens usque ad finem<br/> quid gestum sit, quando gestum sit,<br/> ubi gestum sit, et a quibus gestum sit,<br/> diligenter memorie commendes.<br/> Hec enim quatuor precipue in hystoria requirenda sunt :<br/> persona, negocium, tempus et locus.<br/> Neque ego te perfecte subtilem posse fieri puto in allegoria,<br/> nisi prius fundatus fueris in hystoria.<br/> Noli contempnere minima hec. <br/> Paulatim defluit qui minima contempnit. <br/> Si primo alfabetum discere contempsisses, <br/> nunc inter grammaticos tantum nomen non haberes.<br/>
-                            </p>
-                        </td>
-                        <td>
-                            
-                            <p>Les trois genres de lecteurs.<br/> Il a été assez clairement montré, à mon avis,<br/> que les avancés et ceux qui se promettent davantage d’eux-mêmes<br/> n’ont pas le même dessein que les commençants.<br/> Mais de même qu’on concède à ces derniers<br/> ce que les premiers ne pourraient accomplir sans faute, <br/> de même il leur est demandé <br/> ce à quoi les débutants ne sont pas encore tenus.<br/> J’en viens donc maintenant à tenir mes promesses, <br/> à savoir montrer comment doivent lire l’Écriture sainte<br/> ceux qui ne cherchent encore en elle que la science.<br/> Il y en a qui recherchent la science de l’Écriture sainte<br/> pour amasser des richesses, obtenir des honneurs, <br/> ou acquérir une bonne renommée.<br/> Leur intention est autant à plaindre qu’à blâmer. <br/> Il y en a d’autres aussi<br/> qui se plaisent à entendre les paroles de Dieu et à apprendre ses œuvres, <br/> non parce qu’elles sont salutaires, mais parce qu’elles sont admirables.<br/> Ils veulent scruter les arcanes et connaître les choses inouïes, <br/> beaucoup savoir et ne rien faire.<br/> C’est en vain qu’ils admirent la puissance ceux qui n’aiment pas la miséricorde.<br/> Que font-ils d’autre, je vous le demande,<br/> à part changer les louanges divines en fables ?<br/> C’est ainsi que nous avons l’habitude de nous attacher aux pièces de théâtres et aux poèmes faits pour la scène afin de nous nourrir l’oreille, non l’esprit. <br/> Je pense cependant qu’il ne faut pas tant réprouver ces hommes <br/> que les aider,<br/> puisque leur volonté n’est pas mauvaise, <br/> mais mal conseillée.<br/> D’autres, pour leur part, lisent l’Écriture sainte <br/> afin que, selon le précepte apostolique, <br/>
-                                <a href="#" OnMouseOver="AffBulle('I Pierre 3, 5')" OnMouseOut="HideBulle()" OnClick="return false">ils soient prêts à rendre raison à tout homme qui le demande<br/> de la foi où ils sont établis</a>,<br/> de sorte qu’ils détruisent avec courage les ennemis de la vérité, <br/> qu’ils instruisent les moins savants, <br/> qu’ils connaissent eux-mêmes plus parfaitement le chemin de la vérité<br/> et que comprenant plus profondément les secrets divins,<br/>
-                                    ils les aiment plus étroitement.<br/> Leur piété est très louable et digne d’imitation.<br/> Il y a donc trois sortes d’hommes qui lisent l’Écriture sainte : <br/> Les premiers sont à plaindre, <br/> les seconds à aider, les troisièmes à louer.<br/> Quant à nous, parce que nous entendons tous les conseiller, <br/> nous désirons augmenter en tous le bien qui s’y trouve, <br/> et y remplacer le mal, <br/> nous voulons que tous comprennent ce que nous disons, <br/> que tous accomplissent ce à quoi nous les exhortons.<br/>
-                            </p>
-                            
-                            <p>Livre six. Comment doivent lire l’Écriture sainte<br/> ceux qui y cherchent la science.<br/> Je te propose, lecteur, deux choses, à savoir l’ordre et la manière.<br/> Si tu les observes avec attention, <br/> le chemin de la lecture s’ouvrira facilement à toi.<br/> Dans leur examen <br/> je ne laisserai pas tout à ton talent, <br/> sans pour autant promettre de te donner satisfaction par mes soins, <br/> mais je parcourrai certains points en en donnant de brefs avant-goûts, <br/> de sorte que tu trouves des choses exposées qui t’instruisent <br/> et d’autres omises qui t’exercent.<br/> J’ai rappelé plus haut que l’ordre de la lecture était quadruple : <br/> l’un consiste dans les disciplines, un autre dans les livres, <br/> un autre dans la narration et un autre dans l’exposition.<br/> Comment les déterminer dans l’Écriture sainte<br/> je ne l’ai pas encore montré.</p>
-                            <p><br/> L’ordre dans les disciplines.<br/> Tout d’abord, il faut donc que le lecteur de la Bible considère <br/> l’ordre recherché dans les disciplines<br/> entre <a href="#" OnMouseOver="AffBulle('une des divisions classiques des différents sens de l’Écriture. L’histoire s’attache au sens littéral, l’allégorie au sens figuré, notamment christologique, et la tropologie au sens moral.')" OnMouseOut="HideBulle()" OnClick="return false">l’histoire, l’allégorie et la tropologie</a>, <br/> et quelle est celle qui précède les autres dans l’ordre de la lecture, <br/> point où il n’est pas inutile de rappeler<br/> ce qu’on voit faire dans les constructions, <br/> où tout d’abord l’on pose les fondations, <br/> avant d’y ajouter le bâtiment, <br/> pour qu’à la fin, une fois l’ouvrage achevé, <br/> la maison soit décorée d’une peinture qui y est ajoutée.</p>
-                            <p><br/>Sur l’histoire. Ainsi faut-il vraiment que dans ta formation<br/> tu apprennes d’abord l’histoire<br/> et, en répétant le cours véridique des faits du début à la fin, <br/> tu confies soigneusement à ta mémoire<br/> ce qui s’est passé, quand cela s’est passé, <br/> où cela s’est passé et par qui cela a été fait.<br/> Il y a quatre choses principales à rechercher en histoire : <br/> la personne, le fait, le temps et le lieu.<br/> Et je ne pense pas que tu puisses devenir subtil en allégorie, <br/> si tu n’as pas de bases historiques. <br/> Ne méprise pas ces petites choses.<br/> Il tombe insensiblement celui qui méprise les petites choses.<br/> Si tu avais d’abord méprisé d’apprendre l’alphabet, <br/> tu n’aurais pas aujourd’hui un si grand nom parmi les grammairiens. <br/>
-                            </p>
-                        </td>
-                    </tr>
-                </table>
+
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
+                <!-- appel pour les métadonnées -->
+
+                <div class="container">
+                    <div class="div-acceuil reveal" id="metadonnees">
+                        <br/>
+                        <h3 class="titre_div">Métadonnées</h3>
+                        <hr/>
+                        <xsl:apply-templates select="descendant::sourceDesc"/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+
+                <!-- appel pour l'image intéractive -->
+
+                <div class="container" id="facsimile">
+                    <h3 class="titre_div">Fac-similé intéractif</h3>
+                    <hr/>
+                    <p>
+                        <a>
+                            <xsl:attribute name="href"
+                                select="descendant::surrogates/bibl/title/@facs"/>
+                            <xsl:attribute name="target">
+                                <xsl:text>_blank</xsl:text>
+                            </xsl:attribute>
+                            <xsl:value-of select="descendant::surrogates/bibl/title"/>
+                        </a>
+                    </p>
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <xsl:apply-templates select="descendant::facsimile"/>
+
+                <div class="container" id="edition">
+                    <div class="div-acceuil reveal">
+                        <br/>
+                        <h3 class="titre_div">Edition normalisée et allographétique</h3>
+                        <hr/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="container">
+                            <div class="row">
+                                <div class="edition_centre">
+                                    <div class="col-sm">
+
+                                        <!-- div pour la version régularisée -->
+                                        <h4 class="titre_div">Version régularisée</h4>
+                                        <div class="scroll-div">
+                                            <xsl:apply-templates
+                                                select="descendant::text/body/div/div/p[@n]"
+                                                mode="graphNormalize"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="edition_centre">
+                                    <div class="col-sm">
+
+                                        <!-- div pour le texte régularisée -->
+                                        <h4 class="titre_div">Version allographétique</h4>
+                                        <div class="scroll-div">
+
+                                            <xsl:apply-templates
+                                                select="descendant::text/body/div/div/p[@n]"
+                                                mode="graphOriginal"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <br/>
+                    <br/>
+                    <div class="col-sm">
+                        <a href="./Suite_n_4_de_la_vie_de_saint_Gilles-XML_TEI2xsl.xml"
+                            class="btn btn-primary" role="button" aria-pressed="true">Source
+                            XML-TEI</a>
+                    </div>
+                    <br/>
+                    <div class="col-sm">
+                        <a href="./odd-saintGilles.html" class="btn btn-primary" role="button"
+                            aria-pressed="true">Accéder à l'ODD</a>
+                    </div>
+                </div>
+
+                <!-- footer -->
+
+
+                <footer class="page-footer">
+                    <br/>
+                    <br/>
+                    <div class="footer-copyright text-center py-3">
+
+                        <p>
+                            <xsl:value-of
+                                select="concat(normalize-space(substring-after(upper-case(descendant::encodingDesc/projectDesc), '411')), ', prom. 2020')"
+                            />
+                        </p>
+
+
+                        <a href="http://www.chartes.psl.eu/fr" target="_blank">
+                            <img src="./images/logo-ENC.png" alt="logo Ecole nationale des chartes"
+                                title="Ecole nationale des chartes" width="90"/>
+                        </a>
+
+
+
+                        <a
+                            href="https://github.com/Lucaterre/Projet-Edition_XML-TEI_Ms411_f173a-f173c_StGilles.git"
+                            target="_blank">
+                            <img width="60" src="./images/GitHub-Mark-120px-plus.png"
+                                title="Fork me on GITHUB !" class="img-fluide"
+                                alt="Fork me on GitHub" data-recalc-dims="1"/>
+                        </a>
+                        <a href="https://tei-c.org/guidelines/" target="_blank">
+                            <img src="images/TEI-logo.png" width="60" title="Guidelines TEI P5"
+                                class="img-fluide"/>
+                        </a>
+
+
+                    </div>
+                </footer>
+                <!-- Script JS pour le fac-similé intéractif - hack du dépôt : @ -->
+                <script type="text/javascript">
+                    function changeVersion(e, ver) {
+                    var ovnodes = document.getElementsByClassName("ov");
+                    var rvnodes = document.getElementsByClassName("rv");
+                    if (ver === "ov") {
+                    for (var i = 0; i &lt; ovnodes.length; i++) {
+                    var el = ovnodes[i];
+                    el.style.display = "inline";
+                    }
+                    for (var i = 0; i &lt; rvnodes.length; i++) {
+                    var el = rvnodes[i];
+                    el.style.display = "none";
+                    }
+                    } else if (ver === "rv") {
+                    for (var i = 0; i &lt; ovnodes.length; i++) {
+                    var el = ovnodes[i];
+                    el.style.display = "none";
+                    }
+                    for (var i = 0; i &lt; rvnodes.length; i++) {
+                    var el = rvnodes[i];
+                    el.style.display = "inline";
+                    }
+                    }
+                    var btnVersions = document.querySelectorAll("#tabs-versions button");
+                    for (var i = 0; i &lt; btnVersions.length; i++) {
+                    var el = btnVersions[i];
+                    el.className = el.className.replace(" active", "");
+                    }
+                    e.currentTarget.className += " active";
+                    }
+                    
+                    function changeSection(e, sec) {
+                    var sections = document.getElementsByClassName("section-wrapper");
+                    for (var i = 0; i &lt; sections.length; i++) {
+                    var el = sections[i];
+                    if (el.dataset.section == sec)
+                    el.style.display = "inline-block";
+                    else el.style.display = "none";
+                    }
+                    var btnSections = document.querySelectorAll("#tabs-sections button");
+                    for (var i = 0; i &lt; btnSections.length; i++) {
+                    var el = btnSections[i];
+                    el.className = el.className.replace(" active", "");
+                    }
+                    e.currentTarget.className += " active";
+                    }
+                    
+                    document.getElementById("rvBtn").click();
+                    document.querySelector("#tabs-sections button:first-child").click();
+                </script>
+
+                <!-- Script JS pour les infosbulles -->
+
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                    $('[data-toggle="tooltip"]').tooltip();   
+                    });
+                </script>
+
             </body>
-        </html>    
+        </html>
     </xsl:template>
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+    <!-- template pour les métadonnées -->
+    <xsl:template match="msDesc">
+        <h5 class="titre_div">Description générale</h5>
+        <ul>
+            <p>
+                <i>
+                    <xsl:value-of
+                        select="concat(descendant::origDate, ', ', //profileDesc/langUsage/language)"
+                    />
+                </i>
+            </p>
+            <p>
+                <b>
+                    <xsl:value-of
+                        select="concat(descendant::head/title, ' - ', descendant::msItemStruct/title, ' par ', descendant::msItemStruct/author/forename, ' ', descendant::msItemStruct/author/surname)"
+                    />
+                </b>
+            </p>
+            <p><b>Orig.</b> : <xsl:value-of
+                    select="concat(descendant::settlement, ', ', descendant::repository, ', ', descendant::idno[position() = 1], ', ', descendant::msItemStruct/locus)"
+                /></p>
+        </ul>
+        <h5 class="titre_div">Description technique</h5>
+        <ul>Longueur de la page : <xsl:value-of
+                select="concat(descendant::layoutDesc/layout/height, ' ', descendant::layoutDesc/layout/height/@unit)"
+            /></ul>
+        <ul>Largeur de la page : <xsl:value-of
+                select="concat(descendant::layoutDesc/layout/width, ' ', descendant::layoutDesc/layout/width/@unit)"
+            /></ul>
+        <ul>Nombres de colonnes par pages : <xsl:value-of
+                select="descendant::layoutDesc/layout/@columns"/></ul>
+        <ul>Dimension entre les colonnes : <xsl:value-of
+                select="concat(descendant::layoutDesc/layout/dimensions/dim, ' ', descendant::layoutDesc/layout/dimensions/dim/@unit)"
+            /></ul>
+        <ul>Marges : </ul>
+        <xsl:for-each select="descendant::layoutDesc/layout[position() = 3]/list/item">
+            <ul>
+                <xsl:value-of select="."/>
+            </ul>
+        </xsl:for-each>
+        <h5 class="titre_div">Informations graphologiques</h5>
+        <ul>
+            <xsl:value-of select="descendant::scriptDesc/scriptNote/p"/>
+        </ul>
+        <h5 class="titre_div">Décoration</h5>
+        <ul>
+            <xsl:value-of select="descendant::decoDesc/decoNote/note"/>
+        </ul>
+    </xsl:template>
+
+
+
+
+    <!-- template pour les images interactives -->
+
+    <xsl:template match="facsimile">
+        <div id="tabs-versions" class="tabs">
+            <button id="rvBtn" onclick="changeVersion(event, 'rv')">Version régularisée</button>
+            <button id="ovBtn" onclick="changeVersion(event, 'ov')">Version allographétique</button>
+        </div>
+        <div id="tabs-sections" class="tabs">
+            <xsl:for-each select="//surface">
+                <button onclick="{concat('changeSection(event, ', position(), ')')}"> Page
+                        <xsl:value-of select="position()"/>
+                </button>
+            </xsl:for-each>
+
+        </div>
+        <p style="padding:0px 0px 0px 294px">
+            <i>Passer la souris sur le fac-similé pour faire apparaître la transcription</i>
+        </p>
+        <xsl:for-each select="//surface">
+            <xsl:variable name="url" select="graphic/@url"/>
+            <div class="section-wrapper" data-section="{position()}">
+                <img src="{$url}" class="image_facsimile" style="border: 2mm solid black;"/>
+                <div class="zone-list">
+                    <xsl:for-each select="zone">
+                        <xsl:variable name="left" select="@ulx + 240"/>
+                        <xsl:variable name="top" select="@uly + 12"/>
+                        <xsl:variable name="width" select="number(@lrx) - number(@ulx)"/>
+                        <xsl:variable name="height" select="number(@lry) - number(@uly)"/>
+                        <xsl:variable name="id" select="@xml:id"/>
+                        <xsl:variable name="facs" select="concat('#', $id)"/>
+                        <div class="zone"
+                            style="top: {$top}px; left: {$left}px; height: {$height}px; width: {$width}px;">
+                            <span style="top: {$height}px;">
+                                <xsl:apply-templates select="//seg[@facs = $facs]"/>
+                            </span>
+                        </div>
+                    </xsl:for-each>
+                </div>
+            </div>
+        </xsl:for-each>
+    </xsl:template>
+
+
+    <!-- Template pour gérer la version normalisée du texte -->
+
+    <xsl:template match="p[@n]" mode="graphNormalize">
+
+        <xsl:apply-templates mode="graphNormalize"/>
+
+    </xsl:template>
+
+    <xsl:template match="seg" mode="graphNormalize">
+        <xsl:variable name="numérotation">
+            <xsl:text>l.</xsl:text>
+            <xsl:number count="seg" format="1" level="any"/>
+            <xsl:text> : </xsl:text>
+        </xsl:variable>
+
+        <p>
+            <xsl:value-of select="$numérotation"/>
+            <xsl:apply-templates mode="graphNormalize"/>
+        </p>
+
+    </xsl:template>
+
+    <!-- règle pour les infobulles du mode régularisé -->
+
+
+
+    <xsl:template match="persName" mode="graphNormalize">
+
+        <xsl:variable name="ref" select="@ref"/>
+        <xsl:variable name="autres_noms"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/persName/text()"/>
+        <xsl:variable name="occupation"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/occupation/text()"/>
+        <xsl:variable name="date_naissance"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/birth/text()"/>
+        <xsl:variable name="date_mort"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/death/text()"/>
+        <xsl:for-each select=".">
+            <xsl:variable name="desc"
+                select="'Autres formes du nom :', $autres_noms, ',', $occupation, ', ', $date_naissance, '-', $date_mort"/>
+            <a href="{concat(., '#')}" title="{$desc}" data-toggle="tooltip" data-placement="top">
+                <xsl:apply-templates mode="graphNormalize"/>
+            </a>
+
+        </xsl:for-each>
+    </xsl:template>
+
+
+
+
+    <xsl:template match="choice" mode="graphNormalize">
+
+        <xsl:value-of
+            select="
+                .//reg/text() |
+                .//reg/pc |
+                .//expan/text() |
+                .//expan/ex/text()
+                "
+        />
+    </xsl:template>
+
+
+    <!-- Template pour gérer la version allographétique du texte -->
+
+    <xsl:template match="p[@n]" mode="graphOriginal">
+
+        <xsl:apply-templates mode="graphOriginal"/>
+
+    </xsl:template>
+
+
+
+    <xsl:template match="seg" mode="graphOriginal">
+        <xsl:variable name="numérotation">
+            <xsl:text>l.</xsl:text>
+            <xsl:number count="seg" format="1" level="any"/>
+            <xsl:text> : </xsl:text>
+        </xsl:variable>
+        <p>
+
+            <xsl:value-of select="$numérotation"/>
+            <xsl:apply-templates mode="graphOriginal"/>
+        </p>
+
+    </xsl:template>
+
+    <!-- règle pour les infobulles du mode allographétique -->
+
+    <xsl:template match="persName" mode="graphOriginal">
+
+        <xsl:variable name="ref" select="@ref"/>
+        <xsl:variable name="autres_noms"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/persName/text()"/>
+        <xsl:variable name="occupation"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/occupation/text()"/>
+        <xsl:variable name="date_naissance"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/birth/text()"/>
+        <xsl:variable name="date_mort"
+            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/death/text()"/>
+        <xsl:for-each select=".">
+            <xsl:variable name="desc"
+                select="'Autres formes du nom :', $autres_noms, ',', $occupation, ', ', $date_naissance, '-', $date_mort"/>
+            <a href="#" title="{$desc}" data-toggle="tooltip">
+                <xsl:apply-templates mode="graphOriginal"/>
+            </a>
+
+        </xsl:for-each>
+    </xsl:template>
+
+
+
+    <xsl:template match="choice" mode="graphOriginal">
+
+        <xsl:value-of
+            select="
+                .//abbr/text() |
+                .//orig/text()
+                "
+        />
+    </xsl:template>
+
+
+    <!-- règles communes à l'ensemble des modes -->
+
+    <!-- règle pour les <lb> -->
+
+    <xsl:template match="descendant::lb" mode="#all">
+        <xsl:text>-</xsl:text>
+    </xsl:template>
+
+
+    <!-- règles spécifiques pour le facsimilé intéractive -->
+
+    <xsl:template match="
+            //abbr/text() |
+            //orig/text()">
+        <span class="ov">
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template>
+
+
+
+    <xsl:template
+        match="
+            //reg/text() |
+            //reg/pc |
+            //expan/text() |
+            //expan/ex/text()">
+        <span class="rv">
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template>
+
+
+
+
+
+
 </xsl:stylesheet>

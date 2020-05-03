@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<!-- **Zone pour les entités** -->
+
+
+<!DOCTYPE texte [
+
+<!-- Abreviations : --> 
+
+<!ENTITY ebar-en "<choice><abbr type='suspension'>&#275;</abbr><expan>e<ex>n</ex></expan></choice>">
+<!ENTITY et-tironien "<choice><abbr type='brevigraph'>&#8266;</abbr><expan><ex>et</ex></expan></choice>">
+<!ENTITY p-acute-pre "<choice><abbr type='suspension'>&#7765;</abbr><expan>p<ex>re</ex></expan></choice>">
+<!ENTITY nostre "<choice><abbr type='contraction'>nr&#771;e</abbr><expan><ex>nostre</ex></expan></choice>">
+<!ENTITY abar-an "<choice><abbr type='suspension'>&#257;</abbr><expan>a<ex>n</ex></expan></choice>">
+<!ENTITY ibar-in "<choice><abbr type='suspension'>&#299;</abbr><expan>i<ex>n</ex></expan></choice>">
+<!ENTITY qbar-que "<choice><abbr type='suspension'>q&#775;</abbr><expan>q<ex>ue</ex></expan></choice>">
+<!ENTITY u-acute-ver "<choice><abbr type='suspension'>&#250;</abbr><expan><ex>ver</ex></expan></choice>">
+<!ENTITY n-acute-ner "<choice><abbr type='suspension'>&#324;</abbr><expan>n<ex>er</ex></expan></choice>">
+<!ENTITY us "<choice><abbr type='brevigraph'>&#42863;</abbr><expan><ex>us</ex></expan></choice>">
+<!ENTITY com "<choice><abbr type='brevigraph'>&#42863;</abbr><expan><ex>com</ex></expan></choice>">
+<!ENTITY o-bar-on "<choice><abbr type='suspension'>&#333;</abbr><expan>o<ex>n</ex></expan></choice>">
+<!ENTITY t-acute-ter "<choice><abbr type='suspension'>t&#769;</abbr><expan>t<ex>er</ex></expan></choice>">
+<!ENTITY p-underbar-par "<choice><abbr type='suspension'>&#42833;</abbr><expan>p<ex>ar</ex></expan></choice>">
+
+
+<!-- Regularisations : Allographes, lettres ramistes -->
+
+<!ENTITY smallSlong "<choice><reg>s</reg><orig>&#383;</orig></choice>">
+<!ENTITY minRrotunda "<choice><reg>r</reg><orig>&#42843;</orig></choice>">
+<!ENTITY i-dipl-j-norm "<choice><reg>j</reg><orig>i</orig></choice>">
+<!ENTITY j-dipl-i-norm "<choice><reg>i</reg><orig>j</orig></choice>">
+<!ENTITY u-dipl-v-norm "<choice><reg>v</reg><orig>u</orig></choice>">
+<!ENTITY v-dipl-u-norm "<choice><reg>u</reg><orig>v</orig></choice>">
+<!ENTITY ligaturelgST "<choice><reg>st</reg><orig>&#383;t</orig></choice>">
+
+<!-- Regularisations : ponctuations, majuscules, minuscules -->
+
+<!ENTITY quote "<choice><reg><pc>'</pc></reg><orig></orig></choice>">
+<!ENTITY gtoG "<choice><reg>G</reg><orig>g</orig></choice>">
+<!ENTITY ctoC "<choice><reg>C</reg><orig>c</orig></choice>">
+<!ENTITY ftoF "<choice><reg>F</reg><orig>f</orig></choice>">
+
+<!-- Initiales -->
+
+<!ENTITY In-Q "<c type='initial'>Q</c>">
+<!ENTITY In-E "<c type='initial'>E</c>">
+<!ENTITY In-S "<c type='initial'>S</c>">
+<!ENTITY In-L "<c type='initial'>L</c>">
+<!ENTITY In-D "<c type='initial'>D</c>">
+<!ENTITY In-C "<c type='initial'>C</c>">
+<!ENTITY In-A "<c type='initial'>A</c>">
+<!ENTITY In-H "<c type='initial'>H</c>">
+<!ENTITY In-M "<c type='initial'>M</c>">
+<!ENTITY In-T "<c type='initial'>T</c>">
+<!ENTITY In-P "<c type='initial'>P</c>">
+
+]>
+
+
+
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main_title">La vie de pluseurs seins et seintes</title>
+            <title type="subtitle">Vie de saint Gilles</title>
+            <author>
+               <forename>Wauchier</forename>
+               <surname>de Denain</surname>
+            </author>
+         </titleStmt>
+         <publicationStmt>
+            <p>Edition en XML-TEI dans la cadre de l'évaluation du master TNAH de l'Ecole nationale
+               des chartes</p>
+         </publicationStmt>
+         <sourceDesc>
+            <!-- **Description du manuscrit** -->
+
+            <msDesc xml:id="A">
+               <!-- identifier le manuscrit -->
+               <msIdentifier>
+                  <country>France</country>
+                  <settlement>Paris</settlement>
+                  <repository>Bibliothèque nationale de France</repository>
+                  <collection>Departement des manuscrits</collection>
+                  <idno>Ms.fr.411</idno>
+                  <altIdentifier>
+                     <idno>ark:/12148/btv1b107209247</idno>
+                     <note>version numérisé disponible sur Gallica BnF</note>
+                  </altIdentifier>
+                  <altIdentifier>
+                     <idno>Anc. 7019</idno>
+                     <note>ancienne cote BnF</note>
+                  </altIdentifier>
+                  <altIdentifier>
+                     <idno>MF 16080</idno>
+                     <note>Cote de consultation en salle de lecture. Micro-film noir et
+                        blanc.</note>
+                  </altIdentifier>
+                  <altIdentifier>
+                     <idno>R 29400</idno>
+                     <note>Cote de la matrice pour demander une reproduction.</note>
+                  </altIdentifier>
+               </msIdentifier>
+               <head>
+                  <title>La Vie de pluseurs seins et seintes</title>
+                  <origDate notBefore="1300" notAfter="1399">Le manuscrit date du XIVe
+                     siècle</origDate>
+               </head>
+               <msContents>
+                  <msItemStruct n="39" xml:lang="fro">
+                     <locus from="folio170rb" to="folio174rb">f.173a-f.173c</locus>
+                     <author>
+                        <forename>Wauchier</forename>
+                        <surname>de Denain</surname>
+                     </author>
+                     <title>Vie de saint Gilles</title>
+                     <incipit>Nus crestiens n'est en terre qui nostre segneur velle servir ne amer
+                        qui volentiers n'entende et oie cels qui racontent et dient</incipit>
+                     <explicit>Or deproions nos et requerons beax sire seinz Giles boens peres que
+                        tes seintes merites nos puissent aidier et secorre a NSJC</explicit>
+                     <textLang mainLang="fro">Ancien français</textLang>
+                  </msItemStruct>
+               </msContents>
+               <!-- Description matérielle du manuscrit -->
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc>
+                        <support>
+                           <material>Parchemin, vélin</material>
+                        </support>
+                        <extent>
+                           <height unit="mm">345</height>
+                           <width unit="mm">250</width>
+                        </extent>
+                        <foliation>
+                           <p>287 feuillets disposés en 36 cahiers de type quaternions à
+                              réclame.</p>
+                           <p>Le dernier cahier 4/3 est amputé d'un feuillet</p>
+                           <note>foliotation en chiffres romains à l'encre rouge</note>
+                        </foliation>
+                        <condition>Les derniers feuillets (f.281-287) sont déchirés dans leur partie
+                           supérieure, d'où des lacunes dans le texte. Le ms. est incomplet à la
+                           fin</condition>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout columns="2">
+                           <height unit="mm">230</height>
+                           <width unit="mm">70</width>
+                           <dimensions type="between_columns">
+                              <dim unit="mm">23</dim>
+                           </dimensions>
+                        </layout>
+                        <layout writtenLines="40"/>
+                        <layout>
+                           <list>
+                              <item>Marge de tête : <dim unit="mm">24</dim></item>
+                              <item>Marge de queue : <dim unit="mm">91</dim></item>
+                              <item>Marge de couture : <dim unit="mm">24</dim></item>
+                              <item>Marge de goutière : <dim unit="mm">54</dim></item>
+                           </list>
+                        </layout>
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc hands="1" xml:id="mainHand">
+                     <handNote>
+                        <p>
+                           <locus from="f1" to="f287"/>
+                        </p>
+                     </handNote>
+                  </handDesc>
+                  <scriptDesc corresp="#mainHand">
+                     <scriptNote>
+                        <p>Écriture gothique textualis du <date when="1300">XIVe siècle</date>
+                           utilisée par une unique main.</p>
+                        <p>Réglure à la mine de plomb, à la pointe sèche ou à l'encre.</p>
+                        <p>Les initiales ornées et les majuscules dans le texte, quelques fois
+                           réhaussées de jaune, constituent le début d'un paragraphe.</p>
+                        <p>Les minuscules sont régulières et sérrées.</p>
+                     </scriptNote>
+                  </scriptDesc>
+                  <decoDesc>
+                     <decoNote>
+                        <note>La place des miniatures et des lettres ornées sont restées en blanc
+                           sauf sur le 3e cahier (f.17-24v).</note>
+                        <note>La décoration du 3e cahier (f.17-24v) consiste en des enluminures, des
+                           motifs végétaux parcourant les colonnes et deux illustrations de
+                           saints.</note>
+                     </decoNote>
+                  </decoDesc>
+                  <bindingDesc>
+                     <p>La reliure est en maroquin bordeaux, sur carton, du <date when="1700">XVIIIe
+                           siècle</date></p>
+                     <decoNote>
+                        <note>Sur les plats, armes royales.</note>
+                        <note>Au dos, 7 cases à décor de fleurs de lys.</note>
+                        <note>Dans la 2e case, le titre "VIES DES SAINTS"</note>
+                     </decoNote>
+                  </bindingDesc>
+               </physDesc>
+               <history>
+                  <!-- indication relatives à la transmission du manuscrit -->
+                  <provenance>
+                     <p>Sur le feuillet de garde en parchemin du début, essais de plume, ainsi
+                        qu'une signature :<signatures>
+                           <mentioned><unclear>Arlene</unclear></mentioned></signatures></p>
+                     <p>En haut, à droite, ancienne cote : <num>7019</num></p>
+                     <p>ff.1 et 287v : <stamp><mentioned>tampon rouge de la Bibliothèque
+                              royale.</mentioned></stamp></p>
+                     <p>f.76, une signature dans le blanc laissé pour la miniature:<signatures>
+                           <mentioned><unclear>"Co-enge"</unclear></mentioned> ou
+                                 <mentioned><unclear>"Tomrenge"</unclear></mentioned></signatures>
+                     </p>
+                     <p>f.156v : essais de plume.</p>
+                  </provenance>
+               </history>
+               <additional>
+                  <!-- ressources utiles pour l'encodage -->
+                  <surrogates>
+                     <bibl>
+                        <title type="web_ressource"
+                           facs="https://gallica.bnf.fr/ark:/12148/btv1b107209247/f178.item.zoom"
+                           >Document numérisé accessible sur Gallica-BnF</title>
+                     </bibl>
+                  </surrogates>
+                  <listBibl>
+                     <bibl>
+                        <title type="main">I “Dialogi” di Gregorio Magno. Tradizione del testo e
+                           antiche traduzioni</title>
+                        <author>
+                           <forename>Paolo</forename>
+                           <surname>Chiesa</surname>
+                        </author>
+                        <date when="2006">2006</date>
+                        <pubPlace>Florence</pubPlace>
+                        <publisher>Sismel Edizioni del Galluzzo</publisher>
+                     </bibl>
+                     <bibl>
+                        <title type="main">Un nuovo frammento del Guiron Le Courtois. L'incipit del
+                           MS. BNF, FR. 350 e la sua consistenza testuale</title>
+                        <citedRange unit="volume">tiré à part de <title>Medioevo Romanzo</title>,
+                           Vol. XXXI, Fascicolo II</citedRange>
+                        <citedRange unit="page" from="241" to="285">241-285</citedRange>
+                        <citedRange unit="page">253</citedRange>
+                        <author>
+                           <forename>Nicola</forename>
+                           <surname>Morato</surname>
+                        </author>
+                        <date when="2007">2007</date>
+                     </bibl>
+                     <bibl>
+                        <title type="main">Notices de manuscrits français et occitans</title>
+                        <title type="subtitle">Dossiers suspendus</title>
+                        <orgName>CNRS-IRHT</orgName>
+                        <date from="1937" to="2010">1937-2010</date>
+                        <pubPlace>Paris</pubPlace>
+                     </bibl>
+                     <bibl>
+                        <title>Au carrefour des traditions italiennes et méditerranéennes. Un
+                           légendier français et ses rapports avec l'histoire ancienne jusqu'à César
+                           et les Fait des romainsdizioni di testi, motivi e linguaggi.</title>
+                        <title type="subtitle">Extrait de L'agiografia volgare. Tradizioni di testi,
+                           motivi e linguaggi. Atti del congresso internazionale, Klagenfurt, <date
+                              from="2015-01-15" to="2015-01-16">15-16 gennaio 2015</date></title>
+                        <author>
+                           <forename>Fabio</forename>
+                           <surname>Zinelli</surname>
+                        </author>
+                        <publisher>Universitätsverlag</publisher>
+                        <pubPlace>Heidelberg</pubPlace>
+                        <date when="2016">2016</date>
+                     </bibl>
+                     <bibl>
+                        <title type="web_ressource"
+                           facs="http://jonas.irht.cnrs.fr/consulter/oeuvre/detail_oeuvre.php?oeuvre=2000"
+                           >Fiche Jonas sur le Ms.fr.411</title>
+                        <orgName>IRHT</orgName>
+                     </bibl>
+                  </listBibl>
+               </additional>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p>Suite de la vie de Saint Gilles extrait du ms. fr. 411 encodé en XML-TEI par Lucas
+               Terriel, MTNAH, Ecole nationale des chartes</p>
+         </projectDesc>
+      </encodingDesc>
+
+      <!--  **Index des lieux et des personnes du passage encodé**  -->
+      <!-- note : pour l'index des personnes, le choix a été fait d'une description minimale se résumant en les différentes formes du nom que l'on retrouve et en la date et lieu de naissance et de mort-->
+
+      <profileDesc>
+         <langUsage>
+            <language ident="fro">Ancien français</language>
+         </langUsage>
+         <abstract>
+            <p>Index regroupant les lieux et les noms de personnes relevés dans le texte encodé</p>
+         </abstract>
+         <settingDesc>
+            <listPlace>
+               <head>Index des lieux :</head>
+               <place>
+                  <settlement xml:id="Orleans" xml:lang="fre">Orléans</settlement>
+                  <settlement xml:lang="lat">Cenabum</settlement>
+                  <country key="FR">France</country>
+               </place>
+            </listPlace>
+         </settingDesc>
+         <particDesc>
+            <listPerson>
+               <head>Index des personnes :</head>
+               <person xml:id="Saint_gilles" sex="M">
+                  <persName xml:lang="fro">seint Giles </persName>
+                  <persName xml:lang="fre">saint Gilles <surname>l'Ermite</surname></persName>
+                  <persName xml:lang="lat">Ægidius </persName>
+                  <persName xml:lang="oci">sant Geli </persName>
+                  <occupation>saint</occupation>
+                  <birth when="0640">640<placeName>
+                        <settlement type="city">Athènes</settlement>
+                        <country key="GR">Grèce</country>
+                     </placeName>
+                  </birth>
+                  <death when="0720">720<placeName>
+                        <settlement type="city">Saint-Gilles-du-Gard</settlement>
+                        <country key="FR">France</country>
+                     </placeName>
+                  </death>
+               </person>
+               <person xml:id="Saint_prix" sex="M">
+                  <persName xml:lang="fro">seint Priu </persName>
+                  <persName xml:lang="fre">Priest de Clermont </persName>
+                  <persName xml:lang="fre">Priest d'Auvergne </persName>
+                  <persName xml:lang="fre">saint Prix </persName>
+                  <persName xml:lang="fre">saint Projet </persName>
+                  <persName xml:lang="fre">saint Préjet </persName>
+                  <persName xml:lang="fre">saint Prist </persName>
+                  <persName xml:lang="lat">Projectus </persName>
+                  <occupation>évêque</occupation>
+                  <birth when="0625">625<placeName>
+                        <settlement type="city"> Vézézoux</settlement>
+                        <country key="FR">France</country>
+                     </placeName>
+                  </birth>
+                  <death when="0676">676<placeName>
+                        <settlement type="city">Volvic</settlement>
+                        <country key="FR">France</country>
+                     </placeName>
+                  </death>
+               </person>
+               <person xml:id="rois_flavius" sex="m">
+                  <persName xml:lang="ita">Flavius </persName>
+                  <persName xml:lang="fre">Authari </persName>
+                  <occupation from="0584" to="0590">rois des Lombards</occupation>
+                  <birth when="0555">555</birth>
+                  <death when="0590">590<placeName>
+                        <settlement type="city">Pavie</settlement>
+                        <country key="IT">Italie</country>
+                     </placeName>
+                  </death>
+               </person>
+               <person xml:id="Charlemagne" sex="m">
+                  <persName xml:lang="fre">Charlemagne </persName>
+                  <persName xml:lang="lat">Carolus Magnus </persName>
+                  <persName xml:lang="fre">Charles Ier <surname>le Grand</surname></persName>
+                  <occupation from="0584" to="0590">rois des Francs</occupation>
+                  <birth notBefore="0742" notAfter="0748">milieu du VIIIe
+                        siècle<placeName> </placeName>
+                  </birth>
+                  <death when="0814-01-28">28 janvier 814<placeName>
+                        <settlement type="city">Aix-la-Chapelle</settlement>
+                        <country key="IT">Italie</country>
+                     </placeName>
+                  </death>
+               </person>
+            </listPerson>
+         </particDesc>
+      </profileDesc>
+      <revisionDesc>
+         <listChange>
+            <!-- On prévoit une liste pour les changements apportés à l'encodage -->
+            <change><date when="2020-01-30">30 janvier 2020</date>Dernière révision par Lucas
+               TERRIEL</change>
+            <!-- INDIQUER LA DERNIERE REVISION -->
+         </listChange>
+      </revisionDesc>
+   </teiHeader>
+
+   <!-- **Zone pour lier l'image et les zones au texte** -->
+
+   <facsimile>
+      <surface xml:id="f173a">
+         <graphic url="./images/f178-iiif-native.jpg" width="1000px" height="1400px"/>
+         <zone xml:id="seg_1" ulx="138" uly="511" lrx="438" lry="539"/>
+         <zone xml:id="seg_2" ulx="136" uly="544" lrx="443" lry="567"/>
+         <zone xml:id="seg_3" ulx="134" uly="574" lrx="435" lry="597"/>
+         <zone xml:id="seg_4" ulx="64" uly="607" lrx="420" lry="630"/>
+         <zone xml:id="seg_5" ulx="61" uly="635" lrx="426" lry="658"/>
+         <zone xml:id="seg_6" ulx="62" uly="665" lrx="429" lry="688"/>
+         <zone xml:id="seg_7" ulx="61" uly="696" lrx="427" lry="715"/>
+         <zone xml:id="seg_8" ulx="62" uly="723" lrx="429" lry="748"/>
+         <zone xml:id="seg_9" ulx="62" uly="754" lrx="423" lry="778"/>
+         <zone xml:id="seg_10" ulx="57" uly="785" lrx="425" lry="807"/>
+         <zone xml:id="seg_11" ulx="55" uly="815" lrx="420" lry="834"/>
+         <zone xml:id="seg_12" ulx="56" uly="844" lrx="418" lry="863"/>
+         <zone xml:id="seg_13" ulx="56" uly="872" lrx="426" lry="894"/>
+         <zone xml:id="seg_14" ulx="57" uly="898" lrx="431" lry="923"/>
+         <zone xml:id="seg_15" ulx="63" uly="930" lrx="430" lry="954"/>
+         <zone xml:id="seg_16" ulx="61" uly="960" lrx="415" lry="983"/>
+         <zone xml:id="seg_17" ulx="57" uly="992" lrx="409" lry="1011"/>
+         <zone xml:id="seg_18" ulx="51" uly="1018" lrx="412" lry="1038"/>
+         <zone xml:id="seg_19" ulx="49" uly="1043" lrx="414" lry="1072"/>
+         <zone xml:id="seg_20" ulx="48" uly="1080" lrx="423" lry="1102"/>
+         <zone xml:id="seg_21" ulx="46" uly="1107" lrx="415" lry="1131"/>
+         <zone xml:id="seg_22" ulx="46" uly="1137" lrx="408" lry="1161"/>
+         <zone xml:id="seg_23" ulx="44" uly="1167" lrx="411" lry="1190"/>
+         <zone xml:id="seg_24" ulx="43" uly="1194" lrx="424" lry="1223"/>
+         <zone xml:id="seg_25" ulx="40" uly="1220" lrx="406" lry="1248"/>
+         <zone xml:id="seg_26" ulx="41" uly="1254" lrx="405" lry="1281"/>
+         <zone xml:id="seg_27" ulx="39" uly="1277" lrx="395" lry="1309"/>
+         <zone xml:id="seg_28" ulx="575" uly="135" lrx="963" lry="163"/>
+         <zone xml:id="seg_29" ulx="571" uly="169" lrx="952" lry="194"/>
+         <zone xml:id="seg_30" ulx="571" uly="198" lrx="950" lry="221"/>
+         <zone xml:id="seg_31" ulx="567" uly="226" lrx="948" lry="251"/>
+         <zone xml:id="seg_32" ulx="566" uly="256" lrx="939" lry="282"/>
+         <zone xml:id="seg_33" ulx="566" uly="286" lrx="953" lry="313"/>
+         <zone xml:id="seg_34" ulx="565" uly="316" lrx="939" lry="344"/>
+         <zone xml:id="seg_35" ulx="567" uly="349" lrx="952" lry="372"/>
+         <zone xml:id="seg_36" ulx="566" uly="379" lrx="952" lry="401"/>
+         <zone xml:id="seg_37" ulx="565" uly="410" lrx="941" lry="432"/>
+         <zone xml:id="seg_38" ulx="566" uly="437" lrx="931" lry="460"/>
+         <zone xml:id="seg_39" ulx="563" uly="468" lrx="938" lry="494"/>
+         <zone xml:id="seg_40" ulx="560" uly="498" lrx="713" lry="517"/>
+         <zone xml:id="seg_41" ulx="634" uly="525" lrx="931" lry="552"/>
+         <zone xml:id="seg_42" ulx="634" uly="560" lrx="947" lry="581"/>
+         <zone xml:id="seg_43" ulx="632" uly="589" lrx="938" lry="607"/>
+         <zone xml:id="seg_44" ulx="557" uly="613" lrx="932" lry="639"/>
+         <zone xml:id="seg_45" ulx="554" uly="646" lrx="949" lry="672"/>
+         <zone xml:id="seg_46" ulx="552" uly="676" lrx="935" lry="697"/>
+         <zone xml:id="seg_47" ulx="552" uly="703" lrx="943" lry="729"/>
+         <zone xml:id="seg_48" ulx="554" uly="735" lrx="927" lry="760"/>
+         <zone xml:id="seg_49" ulx="554" uly="766" lrx="925" lry="787"/>
+         <zone xml:id="seg_50" ulx="551" uly="794" lrx="935" lry="813"/>
+         <zone xml:id="seg_51" ulx="552" uly="823" lrx="937" lry="845"/>
+         <zone xml:id="seg_52" ulx="547" uly="852" lrx="939" lry="872"/>
+         <zone xml:id="seg_53" ulx="548" uly="881" lrx="935" lry="905"/>
+         <zone xml:id="seg_54" ulx="545" uly="910" lrx="923" lry="935"/>
+         <zone xml:id="seg_55" ulx="546" uly="940" lrx="929" lry="963"/>
+         <zone xml:id="seg_56" ulx="545" uly="969" lrx="944" lry="991"/>
+         <zone xml:id="seg_57" ulx="542" uly="997" lrx="940" lry="1020"/>
+         <zone xml:id="seg_58" ulx="544" uly="1026" lrx="942" lry="1051"/>
+         <zone xml:id="seg_59" ulx="540" uly="1058" lrx="931" lry="1082"/>
+         <zone xml:id="seg_60" ulx="540" uly="1089" lrx="928" lry="1109"/>
+         <zone xml:id="seg_61" ulx="538" uly="1116" lrx="930" lry="1138"/>
+         <zone xml:id="seg_62" ulx="539" uly="1146" lrx="922" lry="1166"/>
+         <zone xml:id="seg_63" ulx="538" uly="1178" lrx="915" lry="1198"/>
+         <zone xml:id="seg_64" ulx="538" uly="1207" lrx="931" lry="1227"/>
+         <zone xml:id="seg_65" ulx="536" uly="1235" lrx="944" lry="1257"/>
+         <zone xml:id="seg_66" ulx="534" uly="1266" lrx="928" lry="1285"/>
+         <zone xml:id="seg_67" ulx="534" uly="1295" lrx="926" lry="1313"/>
+      </surface>
+      <surface xml:id="f173c">
+         <graphic url="./images/f179-iiif-native.jpg" width="1000px" height="1400px"/>
+         <zone xml:id="seg_68" ulx="70" uly="117" lrx="464" lry="132"/>
+         <zone xml:id="seg_69" ulx="75" uly="149" lrx="468" lry="162"/>
+         <zone xml:id="seg_70" ulx="77" uly="179" lrx="465" lry="192"/>
+         <zone xml:id="seg_71" ulx="75" uly="209" lrx="463" lry="219"/>
+         <zone xml:id="seg_72" ulx="79" uly="244" lrx="466" lry="253"/>
+         <zone xml:id="seg_73" ulx="81" uly="272" lrx="464" lry="283"/>
+         <zone xml:id="seg_74" ulx="79" uly="304" lrx="475" lry="314"/>
+         <zone xml:id="seg_75" ulx="82" uly="332" lrx="458" lry="343"/>
+         <zone xml:id="seg_76" ulx="82" uly="364" lrx="463" lry="374"/>
+         <zone xml:id="seg_77" ulx="81" uly="392" lrx="461" lry="403"/>
+         <zone xml:id="seg_78" ulx="82" uly="420" lrx="466" lry="432"/>
+         <zone xml:id="seg_79" ulx="84" uly="453" lrx="479" lry="465"/>
+         <zone xml:id="seg_80" ulx="86" uly="481" lrx="470" lry="494"/>
+         <zone xml:id="seg_81" ulx="85" uly="512" lrx="472" lry="522"/>
+         <zone xml:id="seg_82" ulx="83" uly="542" lrx="475" lry="552"/>
+         <zone xml:id="seg_83" ulx="84" uly="576" lrx="411" lry="586"/>
+      </surface>
+   </facsimile>
+
+   <!-- **Texte encodé** -->
+
+   <text>
+      <body>
+         <!-- <div> correspond ici au manuscrit disponible sur gallica dans lequel le passage est encodé -->
+         <div type="manuscript" facs="https://gallica.bnf.fr/ark:/12148/btv1b107209247">
+            <!-- <div> correspond ici à l'ensemble de la section transcrite du passage encodé-->
+            <div type="transcription">
+               <!-- <pb> corespond à la première page du passage encodé -->
+               <pb facs="#173a" n="173front"/>
+               <!-- <cb> correspond à la première colonne du passage encodé -->
+               <cb n="173aa"/>
+               <!-- <p> correspond ici au passage du premier paragraphe -->
+               <p n="1">
+                  <!-- les éléments <hi/> et @rend encode une portion du <p> qui est indentée -->
+                  <hi rend="indent">
+                     <!-- utilisation de </seg><seg> pour signifier les débuts de ligne et opt. @break pour signifier un mot rejeté -->
+                     <seg facs="#seg_1">&In-Q;ant il or&ebar-en;t a&smallSlong;&smallSlong;ez a lui
+                        parle </seg><seg facs="#seg_2">de pluseurs cho&smallSlong;es il
+                        &smallSlong;e mi&smallSlong;tr&ebar-en;t </seg><seg facs="#seg_3">en
+                        &smallSlong;es o&minRrotunda;oi&smallSlong;ons &et-tironien; a&p-acute-pre;s
+                        &smallSlong;en parti<lb break="no"/></seg></hi>
+                  <seg facs="#seg_4">rent. &In-Q;ant il &smallSlong;&quote;enfur&ebar-en;t partiz li
+                     &smallSlong;einz </seg><seg facs="#seg_5">hom &smallSlong;enti qil
+                     e&smallSlong;toit molt afebloiez por </seg><seg facs="#seg_6">la doleur de
+                     &smallSlong;a plaie &smallSlong;i p&minRrotunda;oia a &nostre;&#160;
+                        &smallSlong;eig<lb break="no"/></seg><seg facs="#seg_7">neur. &In-Q;e
+                     &i-dipl-j-norm;ames en ce&smallSlong;t &smallSlong;iecle ne li
+                     fu&ligaturelgST;</seg><seg facs="#seg_8">plus gr&abar-an;t &smallSlong;ante
+                     rendue tant com il ue<lb break="no"/></seg><seg facs="#seg_9"
+                     >&smallSlong;qi&ligaturelgST;.&#160;&In-E;t li rois &u-dipl-v-norm;enoit molt
+                     so&u-dipl-v-norm;ent a </seg><seg facs="#seg_10">lui a&p-acute-pre;s ce
+                     po&minRrotunda; lui &u-dipl-v-norm;isiter &et-tironien; po&minRrotunda; oir
+                     &smallSlong;es &smallSlong;e&ibar-in;<lb break="no"/></seg><seg facs="#seg_11"
+                     >tes paroles &et-tironien;&#160;&smallSlong;i li offroit &et-tironien;&#160;
+                     &u-dipl-v-norm;ouloit don<lb break="no"/></seg><seg facs="#seg_12">ner
+                     gra&abar-an;z a&u-dipl-v-norm;oirs &et-tironien; gr&abar-an;z richeces a
+                     &smallSlong;es </seg><seg facs="#seg_13">li se&ibar-in;z hom
+                     n&ebar-en;&#160;&u-dipl-v-norm;oloit nule reconue eniz </seg><seg
+                     facs="#seg_14">li di&smallSlong;oit qil fei&smallSlong;t aucune eglise ou il
+                        me<lb break="no"/></seg><seg facs="#seg_15">i&ligaturelgST;
+                     p&minRrotunda;eudes homes qi de&smallSlong;oz regle
+                     &u-dipl-v-norm;e&smallSlong;&qbar-que;&smallSlong;&smallSlong;&ebar-en;t
+                     </seg><seg facs="#seg_16">&et-tironien; qi &nostre;&#160;
+                     &smallSlong;eigno&minRrotunda; fui&smallSlong;&smallSlong;&ebar-en;t nuit
+                     &et-tironien;&#160;&i-dipl-j-norm;or &In-L;i ro<lb break="no"/></seg><seg facs="seg_17">is li
+                     re&smallSlong;pondoit qil le feroit &u-dipl-v-norm;olentiers </seg><seg
+                     facs="#seg_18">s'il en &u-dipl-v-norm;ouloit e&smallSlong;tre
+                     &p-acute-pre;stres &et-tironien; go&u-acute-ver;ernierres </seg><seg
+                     facs="#seg_19"><persName ref="#Saint_gilles">&smallSlong;e&ibar-in;z
+                        &gtoG;iles</persName> refu&smallSlong;a molt ce&ligaturelgST;e
+                     cho&smallSlong;e en </seg><seg facs="#seg_20">pluseurs manieres mes tant
+                     l&quote;eme&n-acute-ner;&ebar-en;t </seg><seg facs="#seg_21">par diz
+                     &et-tironien; par paroles &et-tironien; par e&smallSlong;&smallSlong;amples
+                     </seg><seg facs="#seg_22">qil li mo&ligaturelgST;rer&ebar-en;t
+                     &u-dipl-v-norm;ouvi&ligaturelgST; ou ne &u-dipl-v-norm;ouvi&ligaturelgST;
+                     </seg><seg facs="#seg_23">lo&minRrotunda; otroia
+                     lo&minRrotunda;&#160;&u-dipl-v-norm;olente &In-D;ont fi&ligaturelgST; li rois
+                     &qbar-que; </seg><seg facs="#seg_24">molt liez en fu fere –<num type="cardinal"
+                        value="2">II</num>- molt teles egli&smallSlong;e </seg><seg facs="#seg_25"
+                     >&smallSlong;i com <persName ref="#Saint_gilles">&smallSlong;e&ibar-in;z
+                        &gtoG;iles</persName> lor en&smallSlong;eigna les leus </seg><seg
+                     facs="#seg_26">ou len les de&u-dipl-v-norm;oit fere &In-L;&quote;&#160;une
+                     enlaneur </seg><seg facs="#seg_27">se&ibar-in;t pere
+                     l&quote;apo&ligaturelgST;re &et-tironien; l&quote;autre en lenneur</seg>
+                  <!-- corespond à la deuxième page du passage encodé -->
+                  <pb facs="#173c" n="173back"/>
+                  <!-- corespond à la deuxième colonne du passage encodé -->
+                  <cb n="173cb"/>
+                  <!-- corespond à la deuxième colonne du passage encodé -->
+                  <seg facs="#seg_28"><persName ref="#Saint_prix">&smallSlong;e&ibar-in;t
+                        P&minRrotunda;iu le martir</persName>&#160; &In-C;ele fu e&smallSlong;tablie
+                        &i-dipl-j-norm;o&smallSlong;<lb break="no"/>
+                  </seg><seg facs="#seg_29">te la fo&smallSlong;&smallSlong;ee del
+                     &smallSlong;e&ibar-in;t home &et-tironien; la fu il toz les </seg><seg
+                     facs="#seg_30">&i-dipl-j-norm;o&minRrotunda;z de &smallSlong;a
+                     &u-dipl-v-norm;ie en &i-dipl-j-norm;eunes &et-tironien; en
+                     &u-dipl-v-norm;eilles &et-tironien; en </seg><seg facs="#seg_31"
+                     >o&minRrotunda;oisons &et-tironien; en p&minRrotunda;oieres &In-L;&quote;a
+                        &smallSlong;&quote;a&smallSlong;&smallSlong;embler<lb break="no"/></seg><seg
+                     facs="#seg_32">ent o un &p-acute-pre;udome &et-tironien; se&ibar-in;t home por
+                     &nostre; </seg><seg facs="#seg_33">&smallSlong;eignor fuir felonc la ruigle de
+                        moin&smallSlong;<lb break="no"/></seg><seg facs="#seg_34">nage &In-E;t li
+                        <persName ref="#rois_flavius">rois fla&u-dipl-v-norm;i&us;</persName> lor
+                     d&o-bar-on;na la &t-acute-ter;re </seg><seg facs="#seg_35">.<num
+                        type="cardinal" value="5">V</num>. luies en&u-dipl-v-norm;iron eus aoes
+                     lo&minRrotunda; u&smallSlong;ages </seg><seg facs="#seg_36"
+                     >&In-P;o&minRrotunda;ce qil a&u-dipl-v-norm;int une foiz qil &u-dipl-v-norm;olt
+                        par<lb break="no"/></seg><seg facs="#seg_37">ler au se&ibar-in;t home.
+                     &et-tironien; li se&ibar-in;z hom &u-dipl-v-norm;int en </seg><seg
+                     facs="#seg_38">c&o-bar-on;tre lui .<num type="cardinal" value="5">V</num>.
+                     luies de &t-acute-ter;re &In-E;t po&minRrotunda; li otro<lb break="no"
+                     /></seg><seg facs="#seg_39">ia li rois &et-tironien; dona tote &smallSlong;i
+                     com pluseurs </seg><seg facs="#seg_40">le racontent.</seg>
+               </p>
+               <!-- correspond au passage du second paragraphe -->
+               <p n="2">
+                  <!-- correspond à une portion du paragraphe qui est indentée -->
+                  <hi rend="indent">
+                     <seg facs="#seg_41">P&minRrotunda;es ce fu <persName ref="#Saint_gilles"
+                           >&smallSlong;e&ibar-in;z &gtoG;iles</persName> o&minRrotunda;denez
+                        </seg><seg facs="#seg_42">a&p-acute-pre;stre par la p&minRrotunda;oiere de
+                        &smallSlong;es moi<lb break="no"/></seg><seg facs="#seg_43">nes
+                        &et-tironien; de toz les hauz barons del </seg></hi>
+                  <seg facs="#seg_44">reigne &et-tironien; mee&smallSlong;mem&ebar-en;t de tot le
+                     pueple. </seg><seg facs="#seg_45">&In-D;ont &p-acute-pre;mes &com;m&ebar-en;ca
+                     &smallSlong;on co&minRrotunda;s a amegrir </seg><seg facs="#seg_46">par
+                     &i-dipl-j-norm;eunes &et-tironien; par &u-dipl-v-norm;eilles &et-tironien; par
+                     a&smallSlong;&smallSlong;idu </seg><seg facs="#seg_47">e &smallSlong;es
+                     o&minRrotunda;oisons &In-E;t se &u-dipl-v-norm;os eussiez &u-dipl-v-norm;eue la
+                     </seg><seg facs="#seg_48">&u-dipl-v-norm;ie qil menoit &et-tironien;&#160;
+                     &qbar-que;l a&u-dipl-v-norm;oit &com;m&ebar-en;ciee a a<lb break="no"
+                     /></seg><seg facs="#seg_49">mener &et-tironien; mena puis tote &smallSlong;a
+                     &u-dipl-v-norm;ie &In-A;os<lb break="no"/></seg><seg facs="#seg_50"
+                     >dei&smallSlong;&smallSlong;iez &qbar-que; cele qil a&u-dipl-v-norm;oit
+                     de&u-dipl-v-norm;&abar-an;t menee es<lb break="no"/></seg><seg facs="#seg_51"
+                     >toit en&ibar-in;is ce&ligaturelgST;e molt deliteu&smallSlong;e &In-E;t cels
+                     &qbar-que;l </seg><seg facs="#seg_52">a&u-dipl-v-norm;oit de&smallSlong;oz lui
+                     &com;m&ebar-en;ciez a garder menoit </seg><seg facs="#seg_53">il fi
+                     doucem&ebar-en;t &et-tironien; par &smallSlong;i douce maniere &qbar-que;l<lb
+                        break="no"/>
+                  </seg><seg facs="#seg_54">le doutoi&ebar-en;t pl&us;&#160;&et-tironien; en
+                     no&minRrotunda;oi&ebar-en;t par la gr&abar-an;t </seg><seg facs="#seg_55"
+                     >amo&minRrotunda; qil a&u-dipl-v-norm;oi&ebar-en;t a lui &qbar-que; par la
+                     poo&minRrotunda; dont </seg><seg facs="#seg_56">il le
+                     cremi&smallSlong;&smallSlong;&ebar-en;t &In-E;t qi po&minRrotunda;roit dire ne
+                     e&smallSlong;c&ibar-in;e </seg><seg facs="#seg_57">la gr&abar-an;t foi ne la
+                     gr&abar-an;t charite &qbar-que;&#160;&nostre;&#160;&smallSlong;ire </seg><seg
+                     facs="#seg_58">a&u-dipl-v-norm;oit en lui mi&smallSlong;e &In-T;ant a la
+                     renomee </seg><seg facs="#seg_59">de lui &et-tironien; la loenge de
+                     &smallSlong;a religion &qbar-que;le par<lb break="no"/></seg><seg
+                     facs="#seg_60">&u-dipl-v-norm;int as o&minRrotunda;eilles <persName
+                        ref="#Charlemagne">&ctoC;harlemeine</persName> qi a donc </seg><seg
+                     facs="#seg_61">estoit rois de &ftoF;r&abar-an;ce. &In-Q;ant li rois oi par<lb
+                        break="no"/>
+                  </seg><seg facs="#seg_62">ler de &smallSlong;ei&ibar-in;t &gtoG;ile qi si estoit
+                     &p-acute-pre;udom &et-tironien;&#160;&smallSlong;i &smallSlong;e<lb break="no"
+                     /></seg><seg facs="#seg_63">inte &u-dipl-v-norm;ie menoit. Il
+                     de&smallSlong;irra molt a &p-underbar-par;ler </seg><seg facs="#seg_64">a lui.
+                     &In-S;i li trami&ligaturelgST;&#160;&smallSlong;es
+                     me&smallSlong;&smallSlong;agiers &et-tironien; m&abar-an;<lb break="no"
+                     /></seg><seg facs="#seg_65">da par molt douce maniere qil ne le
+                     fa&ligaturelgST; </seg><seg facs="#seg_66">mie qil ne
+                     &u-dipl-v-norm;eni&ligaturelgST;&#160;&u-dipl-v-norm;i&smallSlong;iter le.
+                     &In-Q;&abar-an;t li &smallSlong;e&ibar-in;z </seg><seg facs="#seg_67"> hom oi
+                     les me&smallSlong;&smallSlong;ages &qbar-que; li rois le m&abar-an;doit
+                     </seg><seg facs="#seg_68">en tel maniere il ato&minRrotunda;na &smallSlong;es
+                     cho&smallSlong;es &et-tironien; </seg><seg facs="#seg_69">tant ala qil
+                     &u-dipl-v-norm;int a <placeName ref="#Orleans">o&minRrotunda;liens</placeName>
+                     la hal&n-acute-ner;a </seg><seg facs="#seg_70">il une nuit. &In-M;es
+                     tanto&ligaturelgST; com il &u-dipl-v-norm;&ibar-in;t </seg><seg facs="#seg_71"
+                     >en la cite ala il au mo&ligaturelgST;ier de &smallSlong;einte </seg><seg
+                     facs="#seg_72">croiz por fere ses o&minRrotunda;oi&smallSlong;&o-bar-on;s
+                     &et-tironien; meinten&abar-an;t </seg><seg facs="#seg_73">qil fu entrez en
+                     l&quote;egli&smallSlong;e &In-A;ns de&smallSlong;uez </seg><seg facs="#seg_74"
+                     >qi e&ligaturelgST;oit fo&minRrotunda;s del &smallSlong;ens &com;m&ebar-en;ca
+                     en un an<lb break="no"/></seg><seg facs="#seg_75">gle de&smallSlong;
+                     mo&ligaturelgST;ier a crier molt o&minRrotunda;rible<lb break="no"/></seg><seg
+                     facs="#seg_76">m&ebar-en;t par le deable qil a&u-dipl-v-norm;oit au
+                     co&minRrotunda;s </seg><seg facs="#seg_77">&et-tironien; fi
+                     di&ligaturelgST;&#160;&In-H;euheu <persName ref="#Saint_gilles">se&ibar-in;t
+                        &gtoG;iles</persName> com &i-dipl-j-norm;e </seg><seg facs="#seg_78"
+                     >&smallSlong;ueffre par toi gr&abar-an;t to&minRrotunda;m&ebar-en;z.
+                     &In-E;ncore </seg><seg facs="#seg_79">ne &smallSlong;oit ta
+                     &i-dipl-j-norm;o&ligaturelgST;ice c&o-bar-on;traire a mes lois
+                        le&smallSlong;<lb break="no"/></seg><seg facs="#seg_80">&smallSlong;e un pou
+                     tes o&minRrotunda;oi&smallSlong;ons a fere t&abar-an;t qe &i-dipl-j-norm;e
+                     </seg><seg facs="#seg_81">aie c&o-bar-on;gie de ti partir &et-tironien; de
+                     tenir ma &u-dipl-v-norm;o<lb break="no"/></seg><seg facs="#seg_82">ie. &In-C;ar
+                     la ou &i-dipl-j-norm;e &smallSlong;ui ici enclos &smallSlong;i &smallSlong;ui
+                     &i-dipl-j-norm;e &p-underbar-par; </seg><seg facs="#seg_83">toi
+                     to&minRrotunda;m&ebar-en;tez molt griefment.</seg>
+               </p>
+            </div>
+         </div>
+      </body>
+   </text>
+</TEI>

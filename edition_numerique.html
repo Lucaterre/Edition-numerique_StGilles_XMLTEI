@@ -1,0 +1,1035 @@
+<html lang="fr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="UTF-8">
+      <meta name="description" content="Edition en XML-TEI dans la cadre de l'évaluation du master TNAH de l'Ecole nationale des chartes">
+      <meta name="keywords" content="édition numérique, XML, Text Encoding Initiative, Vie de saint Gilles, Wauchier de Denain, master TNAH, Ecole des Chartes">
+      <meta name="author" content="Lucas Terriel">
+      <meta name="viewport" content="width-device-with, initial-scale-1.0, maximum-scale-1.0, minimal-ui">
+      <title>Edition XML-TEI de La vie de pluseurs seins et seintes - Vie de saint Gilles</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almendra+SC|Roboto"><script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script><style>
+                    /** Style général **/
+                    
+                    .part_header {
+                    background-color:  #7b241c;
+                    }
+                    
+                    .font-header {
+                    font-family: 'MedievalSharp', cursive;
+                    }
+                    
+                    .titre_head {
+                    font-family: 'Almendra SC', serif;
+                    font-size: 70px;
+                    }
+                    
+                    .vertical-line {
+                    border-left: 2px solid #000;
+                    display: inline-block;
+                    height: 20px;
+                    margin: 0 20px;
+                    }
+                    
+                    .menu_header {
+                    padding: 20px 20px 20px 20px;
+                    position: relative;
+                    margin-left: 270px;
+                    text-align: justify;
+                    font-family: 'Roboto', sans-serif;
+                    }
+                    
+                    .page-footer {
+                    display: flow-root;
+                    }
+                    
+                    .footer-copyright {
+                    font-family: 'Roboto', sans-serif;
+                    }
+                    
+                    .titre_div {
+                    font-family: 'Almendra SC', serif;
+                    }
+                    
+                    .scroll-div {
+                    overflow: auto;
+                    height: 550pt;
+                    width: 295pt;
+                    background-color:#DEB887;
+                    padding: 15px;
+                    text-align: justify;
+                    border: 2.5px solid black;
+                    font-size: 15px;
+                    }
+                   
+                    .img-fluide  {
+                    padding: 1px 3px 4px 5px;
+                    margin-left: 13px;
+                    }
+                    
+                    .edition_centre {
+                    padding: 0 0 0 86px;
+                    }
+                   
+                     
+                    /* Style pour le hr Shine */
+                    
+                    .shine {
+                    height: 20px;
+                    width: 60%;
+                    background-image: radial-gradient(
+                    farthest-side at 50% -50%,
+                    hsla(0, 0%, 0%, 0.5),
+                    hsla(0, 0%, 0%, 0));
+                    position: relative; 
+                    }
+                    
+                    .shine::before {
+                    height: 1px;
+                    position: absolute;
+                    top: -1px;
+                    left: 0;
+                    right: 0;
+                    background-image: linear-gradient(
+                    90deg,
+                    hsla(0, 0%, 0%, 0),
+                    hsla(0, 0%, 0%, 0.75) 50%,
+                    hsla(0, 0%, 0%, 0));
+                    }
+                       
+                </style><style>
+                    
+                    /** Style pour facsimilé interactif **/
+                    /** Hack du dépot : @ **/
+                    
+                    h1 {
+                    text-align: center;
+                    }
+                    
+                    .tabs {
+                    overflow: auto;
+                    border: 1px solid darkgrey;
+                    background-color: gainsboro;
+                    margin:5px 240px;
+                    }
+                    
+                    .tabs button {
+                    background-color: inherit;
+                    padding: 0.5em;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    font-size: 1em;
+                    }
+                    
+                    .tabs button:hover {
+                    background-color: silver;
+                    }
+                    
+                    .tabs button.active {
+                    background-color: darkgrey;
+                    }
+                    
+                    .section-wrapper {
+                    position: relative;
+                    padding: 10px 0px 0px 240px;
+      
+                    }
+                    
+                    div.zone {
+                    position: absolute;
+                    }
+                    
+                    div.zone > span {
+                    position: relative;
+                    display: block;
+                    overflow-y: auto;
+                    visibility: hidden;
+                    background-color: white;
+                    font-family: Georgia, serif;
+                    padding: 0px 5px;
+                    }
+                    
+                    .zone:hover span {
+                    visibility: visible;
+                    }
+                    
+                    /* Original version (ov) */
+                    .ov {
+                    color: crimson;
+                    }
+                    
+                    /* Regularized version (rv) */
+                    .rv {
+                    color: mediumseagreen;
+                    }
+                    
+                    /* Not shown (ns) */
+                    .ns {
+                    display: none;
+                    }
+                    
+                </style></head>
+   <body>
+      <div class="jumbotron jumbotron-fluid part_header">
+         <div class="container">
+            <h1 class="titre_head">La vie de pluseurs seins et seintes - Vie de saint Gilles</h1><br><br><hr class="shine"><br><br><br><br><br><nav class="navbar navbar-expand-md navbar-dark bg-dark">
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item"><a class="nav-link " href="#metadonnees">Description du manuscrit</a></li>
+                     <li class="nav-item"><a class="nav-link " href="#facsimile">Facsimilé interactif</a></li>
+                     <li class="nav-item"><a class="nav-link " href="#edition">Edition allographétique et régularisée</a></li>
+                  </ul>
+               </div>
+            </nav>
+         </div>
+      </div><br><br><br><br><br><br><br><div class="container">
+         <div class="div-acceuil reveal" id="metadonnees"><br><h3 class="titre_div">Métadonnées</h3>
+            <hr>
+            <h5 class="titre_div">Description générale</h5>
+            <ul>
+               <p><i>Le manuscrit date du XIVe
+                     siècle, Ancien français</i></p>
+               <p><b>La Vie de pluseurs seins et seintes - Vie de saint Gilles par Wauchier de Denain</b></p>
+               <p><b>Orig.</b> : Paris, Bibliothèque nationale de France, Ms.fr.411, f.173a-f.173c
+               </p>
+            </ul>
+            <h5 class="titre_div">Description technique</h5>
+            <ul>Longueur de la page : 230 mm</ul>
+            <ul>Largeur de la page : 70 mm</ul>
+            <ul>Nombres de colonnes par pages : 2</ul>
+            <ul>Dimension entre les colonnes : 23 mm</ul>
+            <ul>Marges : </ul>
+            <ul>Marge de tête : 24</ul>
+            <ul>Marge de queue : 91</ul>
+            <ul>Marge de couture : 24</ul>
+            <ul>Marge de goutière : 54</ul>
+            <h5 class="titre_div">Informations graphologiques</h5>
+            <ul>Écriture gothique textualis du XIVe siècle
+               utilisée par une unique main. Réglure à la mine de plomb, à la pointe sèche ou à l'encre.
+               Les initiales ornées et les majuscules dans le texte, quelques fois
+               réhaussées de jaune, constituent le début d'un paragraphe. Les minuscules sont régulières
+               et sérrées.
+            </ul>
+            <h5 class="titre_div">Décoration</h5>
+            <ul>La place des miniatures et des lettres ornées sont restées en blanc
+               sauf sur le 3e cahier (f.17-24v). La décoration du 3e cahier (f.17-24v) consiste en
+               des enluminures, des
+               motifs végétaux parcourant les colonnes et deux illustrations de
+               saints.
+            </ul><br><br><br></div>
+      </div>
+      <div class="container" id="facsimile">
+         <h3 class="titre_div">Fac-similé intéractif</h3>
+         <hr>
+         <p><a href="https://gallica.bnf.fr/ark:/12148/btv1b107209247/f178.item.zoom" target="_blank">Document numérisé accessible sur Gallica-BnF</a></p>
+      </div>
+      <div id="tabs-versions" class="tabs"><button id="rvBtn" onclick="changeVersion(event, 'rv')">Version régularisée</button><button id="ovBtn" onclick="changeVersion(event, 'ov')">Version allographétique</button></div>
+      <div id="tabs-sections" class="tabs"><button onclick="changeSection(event, 1)"> Page
+            1</button><button onclick="changeSection(event, 2)"> Page
+            2</button></div>
+      <p style="padding:0px 0px 0px 294px"><i>Passer la souris sur le fac-similé pour faire apparaître la transcription</i></p>
+      <div class="section-wrapper" data-section="1"><img src="./images/f178-iiif-native.jpg" class="image_facsimile" style="border: 2mm solid black;"><div class="zone-list">
+            <div class="zone" style="top: 523px; left: 378px; height: 28px; width: 300px;"><span style="top: 28px;">Qant il or<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t a<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>ez a lui
+                  parle </span></div>
+            <div class="zone" style="top: 556px; left: 376px; height: 23px; width: 307px;"><span style="top: 23px;">de pluseurs cho<span class="rv">s</span><span class="ov">ſ</span>es il
+                  <span class="rv">s</span><span class="ov">ſ</span>e mi<span class="rv">s</span><span class="ov">ſ</span>tr<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t </span></div>
+            <div class="zone" style="top: 586px; left: 374px; height: 23px; width: 301px;"><span style="top: 23px;">en
+                  <span class="rv">s</span><span class="ov">ſ</span>es o<span class="rv">r</span><span class="ov">ꝛ</span>oi<span class="rv">s</span><span class="ov">ſ</span>ons <span class="ov">⁊</span><span class="rv">et</span> a<span class="ov">ṕ</span><span class="rv">p</span><span class="rv">re</span>s
+                  <span class="rv">s</span><span class="ov">ſ</span>en parti-</span></div>
+            <div class="zone" style="top: 619px; left: 304px; height: 23px; width: 356px;"><span style="top: 23px;">rent. Qant il <span class="rv">s</span><span class="ov">ſ</span><span class="rv">'</span>enfur<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t partiz li
+                  <span class="rv">s</span><span class="ov">ſ</span>einz </span></div>
+            <div class="zone" style="top: 647px; left: 301px; height: 23px; width: 365px;"><span style="top: 23px;">hom <span class="rv">s</span><span class="ov">ſ</span>enti qil
+                  e<span class="rv">s</span><span class="ov">ſ</span>toit molt afebloiez por </span></div>
+            <div class="zone" style="top: 677px; left: 302px; height: 23px; width: 367px;"><span style="top: 23px;">la doleur de
+                  <span class="rv">s</span><span class="ov">ſ</span>a plaie <span class="rv">s</span><span class="ov">ſ</span>i p<span class="rv">r</span><span class="ov">ꝛ</span>oia a <span class="ov">nr̃e</span><span class="rv">nostre</span>&nbsp;
+                  <span class="rv">s</span><span class="ov">ſ</span>eig-</span></div>
+            <div class="zone" style="top: 708px; left: 301px; height: 19px; width: 366px;"><span style="top: 19px;">neur. Qe
+                  <span class="rv">j</span><span class="ov">i</span>ames en ce<span class="rv">s</span><span class="ov">ſ</span>t <span class="rv">s</span><span class="ov">ſ</span>iecle ne li
+                  fu<span class="rv">st</span><span class="ov">ſt</span></span></div>
+            <div class="zone" style="top: 735px; left: 302px; height: 25px; width: 367px;"><span style="top: 25px;">plus gr<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t <span class="rv">s</span><span class="ov">ſ</span>ante
+                  rendue tant com il ue-</span></div>
+            <div class="zone" style="top: 766px; left: 302px; height: 24px; width: 361px;"><span style="top: 24px;"><span class="rv">s</span><span class="ov">ſ</span>qi<span class="rv">st</span><span class="ov">ſt</span>.&nbsp;Et li rois <span class="rv">v</span><span class="ov">u</span>enoit molt
+                  so<span class="rv">v</span><span class="ov">u</span>ent a </span></div>
+            <div class="zone" style="top: 797px; left: 297px; height: 22px; width: 368px;"><span style="top: 22px;">lui a<span class="ov">ṕ</span><span class="rv">p</span><span class="rv">re</span>s ce
+                  po<span class="rv">r</span><span class="ov">ꝛ</span> lui <span class="rv">v</span><span class="ov">u</span>isiter <span class="ov">⁊</span><span class="rv">et</span> po<span class="rv">r</span><span class="ov">ꝛ</span> oir
+                  <span class="rv">s</span><span class="ov">ſ</span>es <span class="rv">s</span><span class="ov">ſ</span>e<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>-</span></div>
+            <div class="zone" style="top: 827px; left: 295px; height: 19px; width: 365px;"><span style="top: 19px;">tes paroles <span class="ov">⁊</span><span class="rv">et</span>&nbsp;<span class="rv">s</span><span class="ov">ſ</span>i li offroit <span class="ov">⁊</span><span class="rv">et</span>&nbsp;
+                  <span class="rv">v</span><span class="ov">u</span>ouloit don-</span></div>
+            <div class="zone" style="top: 856px; left: 296px; height: 19px; width: 362px;"><span style="top: 19px;">ner
+                  gra<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>z a<span class="rv">v</span><span class="ov">u</span>oirs <span class="ov">⁊</span><span class="rv">et</span> gr<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>z richeces a
+                  <span class="rv">s</span><span class="ov">ſ</span>es </span></div>
+            <div class="zone" style="top: 884px; left: 296px; height: 22px; width: 370px;"><span style="top: 22px;">li se<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>z hom
+                  n<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>&nbsp;<span class="rv">v</span><span class="ov">u</span>oloit nule reconue eniz </span></div>
+            <div class="zone" style="top: 910px; left: 297px; height: 25px; width: 374px;"><span style="top: 25px;">li di<span class="rv">s</span><span class="ov">ſ</span>oit qil fei<span class="rv">s</span><span class="ov">ſ</span>t aucune eglise ou il
+                  me-</span></div>
+            <div class="zone" style="top: 942px; left: 303px; height: 24px; width: 367px;"><span style="top: 24px;">i<span class="rv">st</span><span class="ov">ſt</span>
+                  p<span class="rv">r</span><span class="ov">ꝛ</span>eudes homes qi de<span class="rv">s</span><span class="ov">ſ</span>oz regle
+                  <span class="rv">v</span><span class="ov">u</span>e<span class="rv">s</span><span class="ov">ſ</span><span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span><span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span><span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t
+                  </span></div>
+            <div class="zone" style="top: 972px; left: 301px; height: 23px; width: 354px;"><span style="top: 23px;"><span class="ov">⁊</span><span class="rv">et</span> qi <span class="ov">nr̃e</span><span class="rv">nostre</span>&nbsp;
+                  <span class="rv">s</span><span class="ov">ſ</span>eigno<span class="rv">r</span><span class="ov">ꝛ</span> fui<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span><span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t nuit
+                  <span class="ov">⁊</span><span class="rv">et</span>&nbsp;<span class="rv">j</span><span class="ov">i</span>or Li ro-</span></div>
+            <div class="zone" style="top: 1004px; left: 297px; height: 19px; width: 352px;"><span style="top: 19px;"></span></div>
+            <div class="zone" style="top: 1030px; left: 291px; height: 20px; width: 361px;"><span style="top: 20px;">s'il en <span class="rv">v</span><span class="ov">u</span>ouloit e<span class="rv">s</span><span class="ov">ſ</span>tre
+                  <span class="ov">ṕ</span><span class="rv">p</span><span class="rv">re</span>stres <span class="ov">⁊</span><span class="rv">et</span> go<span class="ov">ú</span><span class="rv">ver</span>ernierres </span></div>
+            <div class="zone" style="top: 1055px; left: 289px; height: 29px; width: 365px;"><span style="top: 29px;"><span class="rv">s</span><span class="ov">ſ</span>e<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>z
+                  <span class="rv">G</span><span class="ov">g</span>iles refu<span class="rv">s</span><span class="ov">ſ</span>a molt ce<span class="rv">st</span><span class="ov">ſt</span>e
+                  cho<span class="rv">s</span><span class="ov">ſ</span>e en </span></div>
+            <div class="zone" style="top: 1092px; left: 288px; height: 22px; width: 375px;"><span style="top: 22px;">pluseurs manieres mes tant
+                  l<span class="rv">'</span>eme<span class="ov">ń</span><span class="rv">n</span><span class="rv">er</span><span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t </span></div>
+            <div class="zone" style="top: 1119px; left: 286px; height: 24px; width: 369px;"><span style="top: 24px;">par diz
+                  <span class="ov">⁊</span><span class="rv">et</span> par paroles <span class="ov">⁊</span><span class="rv">et</span> par e<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>amples
+                  </span></div>
+            <div class="zone" style="top: 1149px; left: 286px; height: 24px; width: 362px;"><span style="top: 24px;">qil li mo<span class="rv">st</span><span class="ov">ſt</span>rer<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t
+                  <span class="rv">v</span><span class="ov">u</span>ouvi<span class="rv">st</span><span class="ov">ſt</span> ou ne <span class="rv">v</span><span class="ov">u</span>ouvi<span class="rv">st</span><span class="ov">ſt</span></span></div>
+            <div class="zone" style="top: 1179px; left: 284px; height: 23px; width: 367px;"><span style="top: 23px;">lo<span class="rv">r</span><span class="ov">ꝛ</span> otroia
+                  lo<span class="rv">r</span><span class="ov">ꝛ</span>&nbsp;<span class="rv">v</span><span class="ov">u</span>olente Dont fi<span class="rv">st</span><span class="ov">ſt</span> li rois
+                  <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span></span></div>
+            <div class="zone" style="top: 1206px; left: 283px; height: 29px; width: 381px;"><span style="top: 29px;">molt liez en fu fere –II- molt teles egli<span class="rv">s</span><span class="ov">ſ</span>e </span></div>
+            <div class="zone" style="top: 1232px; left: 280px; height: 28px; width: 366px;"><span style="top: 28px;"><span class="rv">s</span><span class="ov">ſ</span>i com <span class="rv">s</span><span class="ov">ſ</span>e<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>z
+                  <span class="rv">G</span><span class="ov">g</span>iles lor en<span class="rv">s</span><span class="ov">ſ</span>eigna les leus </span></div>
+            <div class="zone" style="top: 1266px; left: 281px; height: 27px; width: 364px;"><span style="top: 27px;">ou len les de<span class="rv">v</span><span class="ov">u</span>oit fere L<span class="rv">'</span>&nbsp;une
+                  enlaneur </span></div>
+            <div class="zone" style="top: 1289px; left: 279px; height: 32px; width: 356px;"><span style="top: 32px;">se<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t pere
+                  l<span class="rv">'</span>apo<span class="rv">st</span><span class="ov">ſt</span>re <span class="ov">⁊</span><span class="rv">et</span> l<span class="rv">'</span>autre en lenneur</span></div>
+            <div class="zone" style="top: 147px; left: 815px; height: 28px; width: 388px;"><span style="top: 28px;"><span class="rv">s</span><span class="ov">ſ</span>e<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t
+                  P<span class="rv">r</span><span class="ov">ꝛ</span>iu le martir&nbsp; Cele fu e<span class="rv">s</span><span class="ov">ſ</span>tablie
+                  <span class="rv">j</span><span class="ov">i</span>o<span class="rv">s</span><span class="ov">ſ</span>-</span></div>
+            <div class="zone" style="top: 181px; left: 811px; height: 25px; width: 381px;"><span style="top: 25px;">te la fo<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>ee del
+                  <span class="rv">s</span><span class="ov">ſ</span>e<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t home <span class="ov">⁊</span><span class="rv">et</span> la fu il toz les </span></div>
+            <div class="zone" style="top: 210px; left: 811px; height: 23px; width: 379px;"><span style="top: 23px;"><span class="rv">j</span><span class="ov">i</span>o<span class="rv">r</span><span class="ov">ꝛ</span>z de <span class="rv">s</span><span class="ov">ſ</span>a
+                  <span class="rv">v</span><span class="ov">u</span>ie en <span class="rv">j</span><span class="ov">i</span>eunes <span class="ov">⁊</span><span class="rv">et</span> en
+                  <span class="rv">v</span><span class="ov">u</span>eilles <span class="ov">⁊</span><span class="rv">et</span> en </span></div>
+            <div class="zone" style="top: 238px; left: 807px; height: 25px; width: 381px;"><span style="top: 25px;">o<span class="rv">r</span><span class="ov">ꝛ</span>oisons <span class="ov">⁊</span><span class="rv">et</span> en p<span class="rv">r</span><span class="ov">ꝛ</span>oieres L<span class="rv">'</span>a
+                  <span class="rv">s</span><span class="ov">ſ</span><span class="rv">'</span>a<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>embler-</span></div>
+            <div class="zone" style="top: 268px; left: 806px; height: 26px; width: 373px;"><span style="top: 26px;">ent o un <span class="ov">ṕ</span><span class="rv">p</span><span class="rv">re</span>udome <span class="ov">⁊</span><span class="rv">et</span> se<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t home por
+                  <span class="ov">nr̃e</span><span class="rv">nostre</span></span></div>
+            <div class="zone" style="top: 298px; left: 806px; height: 27px; width: 387px;"><span style="top: 27px;"><span class="rv">s</span><span class="ov">ſ</span>eignor fuir felonc la ruigle de
+                  moin<span class="rv">s</span><span class="ov">ſ</span>-</span></div>
+            <div class="zone" style="top: 328px; left: 805px; height: 28px; width: 374px;"><span style="top: 28px;">nage Et li
+                  rois fla<span class="rv">v</span><span class="ov">u</span>i<span class="ov">ꝯ</span><span class="rv">us</span> lor
+                  d<span class="ov">ō</span><span class="rv">o</span><span class="rv">n</span>na la <span class="ov">t́</span><span class="rv">t</span><span class="rv">er</span>re </span></div>
+            <div class="zone" style="top: 361px; left: 807px; height: 23px; width: 385px;"><span style="top: 23px;">.V. luies en<span class="rv">v</span><span class="ov">u</span>iron eus aoes
+                  lo<span class="rv">r</span><span class="ov">ꝛ</span> u<span class="rv">s</span><span class="ov">ſ</span>ages </span></div>
+            <div class="zone" style="top: 391px; left: 806px; height: 22px; width: 386px;"><span style="top: 22px;">Po<span class="rv">r</span><span class="ov">ꝛ</span>ce qil a<span class="rv">v</span><span class="ov">u</span>int une foiz qil <span class="rv">v</span><span class="ov">u</span>olt
+                  par-</span></div>
+            <div class="zone" style="top: 422px; left: 805px; height: 22px; width: 376px;"><span style="top: 22px;">ler au se<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t home.
+                  <span class="ov">⁊</span><span class="rv">et</span> li se<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>z hom <span class="rv">v</span><span class="ov">u</span>int en </span></div>
+            <div class="zone" style="top: 449px; left: 806px; height: 23px; width: 365px;"><span style="top: 23px;">c<span class="ov">ō</span><span class="rv">o</span><span class="rv">n</span>tre lui .V.
+                  luies de <span class="ov">t́</span><span class="rv">t</span><span class="rv">er</span>re Et po<span class="rv">r</span><span class="ov">ꝛ</span> li otro-</span></div>
+            <div class="zone" style="top: 480px; left: 803px; height: 26px; width: 375px;"><span style="top: 26px;">ia li rois <span class="ov">⁊</span><span class="rv">et</span> dona tote <span class="rv">s</span><span class="ov">ſ</span>i
+                  com pluseurs </span></div>
+            <div class="zone" style="top: 510px; left: 800px; height: 19px; width: 153px;"><span style="top: 19px;">le racontent.</span></div>
+            <div class="zone" style="top: 537px; left: 874px; height: 27px; width: 297px;"><span style="top: 27px;">P<span class="rv">r</span><span class="ov">ꝛ</span>es ce fu <span class="rv">s</span><span class="ov">ſ</span>e<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>z <span class="rv">G</span><span class="ov">g</span>iles o<span class="rv">r</span><span class="ov">ꝛ</span>denez
+                  </span></div>
+            <div class="zone" style="top: 572px; left: 874px; height: 21px; width: 313px;"><span style="top: 21px;">a<span class="ov">ṕ</span><span class="rv">p</span><span class="rv">re</span>stre par la p<span class="rv">r</span><span class="ov">ꝛ</span>oiere de
+                  <span class="rv">s</span><span class="ov">ſ</span>es moi-</span></div>
+            <div class="zone" style="top: 601px; left: 872px; height: 18px; width: 306px;"><span style="top: 18px;">nes
+                  <span class="ov">⁊</span><span class="rv">et</span> de toz les hauz barons del </span></div>
+            <div class="zone" style="top: 625px; left: 797px; height: 26px; width: 375px;"><span style="top: 26px;">reigne <span class="ov">⁊</span><span class="rv">et</span> mee<span class="rv">s</span><span class="ov">ſ</span>mem<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t de tot le
+                  pueple. </span></div>
+            <div class="zone" style="top: 658px; left: 794px; height: 26px; width: 395px;"><span style="top: 26px;">Dont <span class="ov">ṕ</span><span class="rv">p</span><span class="rv">re</span>mes <span class="ov">ꝯ</span><span class="rv">com</span>m<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>ca
+                  <span class="rv">s</span><span class="ov">ſ</span>on co<span class="rv">r</span><span class="ov">ꝛ</span>s a amegrir </span></div>
+            <div class="zone" style="top: 688px; left: 792px; height: 21px; width: 383px;"><span style="top: 21px;">par
+                  <span class="rv">j</span><span class="ov">i</span>eunes <span class="ov">⁊</span><span class="rv">et</span> par <span class="rv">v</span><span class="ov">u</span>eilles <span class="ov">⁊</span><span class="rv">et</span> par
+                  a<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>idu </span></div>
+            <div class="zone" style="top: 715px; left: 792px; height: 26px; width: 391px;"><span style="top: 26px;">e <span class="rv">s</span><span class="ov">ſ</span>es
+                  o<span class="rv">r</span><span class="ov">ꝛ</span>oisons Et se <span class="rv">v</span><span class="ov">u</span>os eussiez <span class="rv">v</span><span class="ov">u</span>eue la
+                  </span></div>
+            <div class="zone" style="top: 747px; left: 794px; height: 25px; width: 373px;"><span style="top: 25px;"><span class="rv">v</span><span class="ov">u</span>ie qil menoit <span class="ov">⁊</span><span class="rv">et</span>&nbsp;
+                  <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span>l a<span class="rv">v</span><span class="ov">u</span>oit <span class="ov">ꝯ</span><span class="rv">com</span>m<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>ciee a a-</span></div>
+            <div class="zone" style="top: 778px; left: 794px; height: 21px; width: 371px;"><span style="top: 21px;">mener <span class="ov">⁊</span><span class="rv">et</span> mena puis tote <span class="rv">s</span><span class="ov">ſ</span>a
+                  <span class="rv">v</span><span class="ov">u</span>ie Aos-</span></div>
+            <div class="zone" style="top: 806px; left: 791px; height: 19px; width: 384px;"><span style="top: 19px;">dei<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>iez <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span> cele qil a<span class="rv">v</span><span class="ov">u</span>oit
+                  de<span class="rv">v</span><span class="ov">u</span><span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t menee es-</span></div>
+            <div class="zone" style="top: 835px; left: 792px; height: 22px; width: 385px;"><span style="top: 22px;">toit en<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>is ce<span class="rv">st</span><span class="ov">ſt</span>e molt deliteu<span class="rv">s</span><span class="ov">ſ</span>e Et cels
+                  <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span>l </span></div>
+            <div class="zone" style="top: 864px; left: 787px; height: 20px; width: 392px;"><span style="top: 20px;">a<span class="rv">v</span><span class="ov">u</span>oit de<span class="rv">s</span><span class="ov">ſ</span>oz lui
+                  <span class="ov">ꝯ</span><span class="rv">com</span>m<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>ciez a garder menoit </span></div>
+            <div class="zone" style="top: 893px; left: 788px; height: 24px; width: 387px;"><span style="top: 24px;">il fi
+                  doucem<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t <span class="ov">⁊</span><span class="rv">et</span> par <span class="rv">s</span><span class="ov">ſ</span>i douce maniere <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span>l-</span></div>
+            <div class="zone" style="top: 922px; left: 785px; height: 25px; width: 378px;"><span style="top: 25px;">le doutoi<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t pl<span class="ov">ꝯ</span><span class="rv">us</span>&nbsp;<span class="ov">⁊</span><span class="rv">et</span> en
+                  no<span class="rv">r</span><span class="ov">ꝛ</span>oi<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t par la gr<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t </span></div>
+            <div class="zone" style="top: 952px; left: 786px; height: 23px; width: 383px;"><span style="top: 23px;">amo<span class="rv">r</span><span class="ov">ꝛ</span> qil a<span class="rv">v</span><span class="ov">u</span>oi<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t a lui <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span> par la
+                  poo<span class="rv">r</span><span class="ov">ꝛ</span> dont </span></div>
+            <div class="zone" style="top: 981px; left: 785px; height: 22px; width: 399px;"><span style="top: 22px;">il le
+                  cremi<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span><span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t Et qi po<span class="rv">r</span><span class="ov">ꝛ</span>roit dire ne
+                  e<span class="rv">s</span><span class="ov">ſ</span>c<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>e </span></div>
+            <div class="zone" style="top: 1009px; left: 782px; height: 23px; width: 398px;"><span style="top: 23px;">la gr<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t foi ne la
+                  gr<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t charite <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span>&nbsp;<span class="ov">nr̃e</span><span class="rv">nostre</span>&nbsp;<span class="rv">s</span><span class="ov">ſ</span>ire </span></div>
+            <div class="zone" style="top: 1038px; left: 784px; height: 25px; width: 398px;"><span style="top: 25px;">a<span class="rv">v</span><span class="ov">u</span>oit en lui mi<span class="rv">s</span><span class="ov">ſ</span>e Tant a la
+                  renomee </span></div>
+            <div class="zone" style="top: 1070px; left: 780px; height: 24px; width: 391px;"><span style="top: 24px;">de lui <span class="ov">⁊</span><span class="rv">et</span> la loenge de
+                  <span class="rv">s</span><span class="ov">ſ</span>a religion <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span>le par-</span></div>
+            <div class="zone" style="top: 1101px; left: 780px; height: 20px; width: 388px;"><span style="top: 20px;"><span class="rv">v</span><span class="ov">u</span>int as o<span class="rv">r</span><span class="ov">ꝛ</span>eilles <span class="rv">C</span><span class="ov">c</span>harlemeine qi a donc </span></div>
+            <div class="zone" style="top: 1128px; left: 778px; height: 22px; width: 392px;"><span style="top: 22px;">estoit rois de <span class="rv">F</span><span class="ov">f</span>r<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>ce. Qant li rois oi par-</span></div>
+            <div class="zone" style="top: 1158px; left: 779px; height: 20px; width: 383px;"><span style="top: 20px;">ler de <span class="rv">s</span><span class="ov">ſ</span>ei<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t <span class="rv">G</span><span class="ov">g</span>ile qi si estoit
+                  <span class="ov">ṕ</span><span class="rv">p</span><span class="rv">re</span>udom <span class="ov">⁊</span><span class="rv">et</span>&nbsp;<span class="rv">s</span><span class="ov">ſ</span>i <span class="rv">s</span><span class="ov">ſ</span>e-</span></div>
+            <div class="zone" style="top: 1190px; left: 778px; height: 20px; width: 377px;"><span style="top: 20px;">inte <span class="rv">v</span><span class="ov">u</span>ie menoit. Il
+                  de<span class="rv">s</span><span class="ov">ſ</span>irra molt a <span class="ov">ꝑ</span><span class="rv">p</span><span class="rv">ar</span>ler </span></div>
+            <div class="zone" style="top: 1219px; left: 778px; height: 20px; width: 393px;"><span style="top: 20px;">a lui.
+                  Si li trami<span class="rv">st</span><span class="ov">ſt</span>&nbsp;<span class="rv">s</span><span class="ov">ſ</span>es
+                  me<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>agiers <span class="ov">⁊</span><span class="rv">et</span> m<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>-</span></div>
+            <div class="zone" style="top: 1247px; left: 776px; height: 22px; width: 408px;"><span style="top: 22px;">da par molt douce maniere qil ne le
+                  fa<span class="rv">st</span><span class="ov">ſt</span></span></div>
+            <div class="zone" style="top: 1278px; left: 774px; height: 19px; width: 394px;"><span style="top: 19px;">mie qil ne
+                  <span class="rv">v</span><span class="ov">u</span>eni<span class="rv">st</span><span class="ov">ſt</span>&nbsp;<span class="rv">v</span><span class="ov">u</span>i<span class="rv">s</span><span class="ov">ſ</span>iter le.
+                  Q<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t li <span class="rv">s</span><span class="ov">ſ</span>e<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>z </span></div>
+            <div class="zone" style="top: 1307px; left: 774px; height: 18px; width: 392px;"><span style="top: 18px;"> hom oi
+                  les me<span class="rv">s</span><span class="ov">ſ</span><span class="rv">s</span><span class="ov">ſ</span>ages <span class="ov">q̇</span><span class="rv">q</span><span class="rv">ue</span> li rois le m<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>doit
+                  </span></div>
+         </div>
+      </div>
+      <div class="section-wrapper" data-section="2"><img src="./images/f179-iiif-native.jpg" class="image_facsimile" style="border: 2mm solid black;"><div class="zone-list">
+            <div class="zone" style="top: 129px; left: 310px; height: 15px; width: 394px;"><span style="top: 15px;">en tel maniere il ato<span class="rv">r</span><span class="ov">ꝛ</span>na <span class="rv">s</span><span class="ov">ſ</span>es
+                  cho<span class="rv">s</span><span class="ov">ſ</span>es <span class="ov">⁊</span><span class="rv">et</span></span></div>
+            <div class="zone" style="top: 161px; left: 315px; height: 13px; width: 393px;"><span style="top: 13px;">tant ala qil
+                  <span class="rv">v</span><span class="ov">u</span>int a o<span class="rv">r</span><span class="ov">ꝛ</span>liens
+                  la hal<span class="ov">ń</span><span class="rv">n</span><span class="rv">er</span>a </span></div>
+            <div class="zone" style="top: 191px; left: 317px; height: 13px; width: 388px;"><span style="top: 13px;">il une nuit. Mes
+                  tanto<span class="rv">st</span><span class="ov">ſt</span> com il <span class="rv">v</span><span class="ov">u</span><span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t </span></div>
+            <div class="zone" style="top: 221px; left: 315px; height: 10px; width: 388px;"><span style="top: 10px;">en la cite ala il au mo<span class="rv">st</span><span class="ov">ſt</span>ier de <span class="rv">s</span><span class="ov">ſ</span>einte </span></div>
+            <div class="zone" style="top: 256px; left: 319px; height: 9px; width: 387px;"><span style="top: 9px;">croiz por fere ses o<span class="rv">r</span><span class="ov">ꝛ</span>oi<span class="rv">s</span><span class="ov">ſ</span><span class="ov">ō</span><span class="rv">o</span><span class="rv">n</span>s
+                  <span class="ov">⁊</span><span class="rv">et</span> meinten<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t </span></div>
+            <div class="zone" style="top: 284px; left: 321px; height: 11px; width: 383px;"><span style="top: 11px;">qil fu entrez en
+                  l<span class="rv">'</span>egli<span class="rv">s</span><span class="ov">ſ</span>e Ans de<span class="rv">s</span><span class="ov">ſ</span>uez </span></div>
+            <div class="zone" style="top: 316px; left: 319px; height: 10px; width: 396px;"><span style="top: 10px;">qi e<span class="rv">st</span><span class="ov">ſt</span>oit fo<span class="rv">r</span><span class="ov">ꝛ</span>s del <span class="rv">s</span><span class="ov">ſ</span>ens <span class="ov">ꝯ</span><span class="rv">com</span>m<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>ca
+                  en un an-</span></div>
+            <div class="zone" style="top: 344px; left: 322px; height: 11px; width: 376px;"><span style="top: 11px;">gle de<span class="rv">s</span><span class="ov">ſ</span>
+                  mo<span class="rv">st</span><span class="ov">ſt</span>ier a crier molt o<span class="rv">r</span><span class="ov">ꝛ</span>rible-</span></div>
+            <div class="zone" style="top: 376px; left: 322px; height: 10px; width: 381px;"><span style="top: 10px;">m<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>t par le deable qil a<span class="rv">v</span><span class="ov">u</span>oit au
+                  co<span class="rv">r</span><span class="ov">ꝛ</span>s </span></div>
+            <div class="zone" style="top: 404px; left: 321px; height: 11px; width: 380px;"><span style="top: 11px;"><span class="ov">⁊</span><span class="rv">et</span> fi
+                  di<span class="rv">st</span><span class="ov">ſt</span>&nbsp;Heuheu se<span class="ov">ī</span><span class="rv">i</span><span class="rv">n</span>t
+                  <span class="rv">G</span><span class="ov">g</span>iles com <span class="rv">j</span><span class="ov">i</span>e </span></div>
+            <div class="zone" style="top: 432px; left: 322px; height: 12px; width: 384px;"><span style="top: 12px;"><span class="rv">s</span><span class="ov">ſ</span>ueffre par toi gr<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t to<span class="rv">r</span><span class="ov">ꝛ</span>m<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>z.
+                  Encore </span></div>
+            <div class="zone" style="top: 465px; left: 324px; height: 12px; width: 395px;"><span style="top: 12px;">ne <span class="rv">s</span><span class="ov">ſ</span>oit ta
+                  <span class="rv">j</span><span class="ov">i</span>o<span class="rv">st</span><span class="ov">ſt</span>ice c<span class="ov">ō</span><span class="rv">o</span><span class="rv">n</span>traire a mes lois
+                  le<span class="rv">s</span><span class="ov">ſ</span>-</span></div>
+            <div class="zone" style="top: 493px; left: 326px; height: 13px; width: 384px;"><span style="top: 13px;"><span class="rv">s</span><span class="ov">ſ</span>e un pou
+                  tes o<span class="rv">r</span><span class="ov">ꝛ</span>oi<span class="rv">s</span><span class="ov">ſ</span>ons a fere t<span class="ov">ā</span><span class="rv">a</span><span class="rv">n</span>t qe <span class="rv">j</span><span class="ov">i</span>e
+                  </span></div>
+            <div class="zone" style="top: 524px; left: 325px; height: 10px; width: 387px;"><span style="top: 10px;">aie c<span class="ov">ō</span><span class="rv">o</span><span class="rv">n</span>gie de ti partir <span class="ov">⁊</span><span class="rv">et</span> de
+                  tenir ma <span class="rv">v</span><span class="ov">u</span>o-</span></div>
+            <div class="zone" style="top: 554px; left: 323px; height: 10px; width: 392px;"><span style="top: 10px;">ie. Car
+                  la ou <span class="rv">j</span><span class="ov">i</span>e <span class="rv">s</span><span class="ov">ſ</span>ui ici enclos <span class="rv">s</span><span class="ov">ſ</span>i <span class="rv">s</span><span class="ov">ſ</span>ui
+                  <span class="rv">j</span><span class="ov">i</span>e <span class="ov">ꝑ</span><span class="rv">p</span><span class="rv">ar</span></span></div>
+            <div class="zone" style="top: 588px; left: 324px; height: 10px; width: 327px;"><span style="top: 10px;">toi
+                  to<span class="rv">r</span><span class="ov">ꝛ</span>m<span class="ov">ē</span><span class="rv">e</span><span class="rv">n</span>tez molt griefment.</span></div>
+         </div>
+      </div>
+      <div class="container" id="edition">
+         <div class="div-acceuil reveal"><br><h3 class="titre_div">Edition normalisée et allographétique</h3>
+            <hr><br><br><br><div class="container">
+               <div class="row">
+                  <div class="edition_centre">
+                     <div class="col-sm">
+                        <h4 class="titre_div">Version régularisée</h4>
+                        <div class="scroll-div">
+                           <p>l.1 : Qant il orent assez a lui
+                              parle 
+                           </p>
+                           <p>l.2 : de pluseurs choses il
+                              se mistrent 
+                           </p>
+                           <p>l.3 : en
+                              ses oroisons et apres
+                              sen parti-
+                           </p>
+                           <p>l.4 : rent. Qant il s'enfurent partiz li
+                              seinz 
+                           </p>
+                           <p>l.5 : hom senti qil
+                              estoit molt afebloiez por 
+                           </p>
+                           <p>l.6 : la doleur de
+                              sa plaie si proia a nostre&nbsp;
+                              seig-
+                           </p>
+                           <p>l.7 : neur. Qe
+                              james en cest siecle ne li
+                              fust
+                           </p>
+                           <p>l.8 : plus grant sante
+                              rendue tant com il ue-
+                           </p>
+                           <p>l.9 : sqist.&nbsp;Et li rois venoit molt
+                              sovent a 
+                           </p>
+                           <p>l.10 : lui apres ce
+                              por lui visiter et por oir
+                              ses sein-
+                           </p>
+                           <p>l.11 : tes paroles et&nbsp;si li offroit et&nbsp;
+                              vouloit don-
+                           </p>
+                           <p>l.12 : ner
+                              graanz avoirs et granz richeces a
+                              ses 
+                           </p>
+                           <p>l.13 : li seinz hom
+                              nen&nbsp;voloit nule reconue eniz 
+                           </p>
+                           <p>l.14 : li disoit qil feist aucune eglise ou il
+                              me-
+                           </p>
+                           <p>l.15 : ist
+                              preudes homes qi desoz regle
+                              vesquessent
+                              
+                           </p>
+                           <p>l.16 : et qi nostre&nbsp;
+                              seignor fuissent nuit
+                              et&nbsp;jor Li ro-
+                           </p>
+                           <p>l.17 : is li
+                              respondoit qil le feroit volentiers 
+                           </p>
+                           <p>l.18 : s'il en vouloit estre
+                              prestres et goverernierres 
+                           </p>
+                           <p>l.19 : <a href="s%C5%BFe%C4%ABinz%0A                        Ggiles#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip" data-placement="top">seinz
+                                 Giles</a> refusa molt ceste
+                              chose en 
+                           </p>
+                           <p>l.20 : pluseurs manieres mes tant
+                              l'emenerent 
+                           </p>
+                           <p>l.21 : par diz
+                              et par paroles et par essamples
+                              
+                           </p>
+                           <p>l.22 : qil li mostrerent
+                              vouvist ou ne vouvist
+                           </p>
+                           <p>l.23 : lor otroia
+                              lor&nbsp;volente Dont fist li rois
+                              que
+                           </p>
+                           <p>l.24 : molt liez en fu fere –II- molt teles eglise </p>
+                           <p>l.25 : si com <a href="s%C5%BFe%C4%ABinz%0A                        Ggiles#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip" data-placement="top">seinz
+                                 Giles</a> lor enseigna les leus 
+                           </p>
+                           <p>l.26 : ou len les devoit fere L'&nbsp;une
+                              enlaneur 
+                           </p>
+                           <p>l.27 : seint pere
+                              l'apostre et l'autre en lenneur
+                           </p>
+                           <p>l.28 : <a href="s%C5%BFe%C4%ABint%0A                        Pr%EA%9D%9Biu le martir#" title="Autres formes du nom : seint Priu Priest de Clermont Priest d'Auvergne saint Prix saint Projet saint Préjet saint Prist Projectus  , évêque ,  625 - 676" data-toggle="tooltip" data-placement="top">seint
+                                 Priu le martir</a>&nbsp; Cele fu establie
+                              jos-
+                           </p>
+                           <p>l.29 : te la fossee del
+                              seint home et la fu il toz les 
+                           </p>
+                           <p>l.30 : jorz de sa
+                              vie en jeunes et en
+                              veilles et en 
+                           </p>
+                           <p>l.31 : oroisons et en proieres L'a
+                              s'assembler-
+                           </p>
+                           <p>l.32 : ent o un preudome et seint home por
+                              nostre
+                           </p>
+                           <p>l.33 : seignor fuir felonc la ruigle de
+                              moins-
+                           </p>
+                           <p>l.34 : nage Et li
+                              <a href="rois flavui%EA%9D%AFus#" title="Autres formes du nom : Flavius Authari  , rois des Lombards ,  555 - 590" data-toggle="tooltip" data-placement="top">rois flavius</a> lor
+                              donna la terre 
+                           </p>
+                           <p>l.35 : .V. luies environ eus aoes
+                              lor usages 
+                           </p>
+                           <p>l.36 : Porce qil avint une foiz qil volt
+                              par-
+                           </p>
+                           <p>l.37 : ler au seint home.
+                              et li seinz hom vint en 
+                           </p>
+                           <p>l.38 : contre lui .V.
+                              luies de terre Et por li otro-
+                           </p>
+                           <p>l.39 : ia li rois et dona tote si
+                              com pluseurs 
+                           </p>
+                           <p>l.40 : le racontent.</p>
+                           <p>l.41 : Pres ce fu <a href="s%C5%BFe%C4%ABinz Ggiles#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip" data-placement="top">seinz Giles</a> ordenez
+                              
+                           </p>
+                           <p>l.42 : aprestre par la proiere de
+                              ses moi-
+                           </p>
+                           <p>l.43 : nes
+                              et de toz les hauz barons del 
+                           </p>
+                           <p>l.44 : reigne et meesmement de tot le
+                              pueple. 
+                           </p>
+                           <p>l.45 : Dont premes commenca
+                              son cors a amegrir 
+                           </p>
+                           <p>l.46 : par
+                              jeunes et par veilles et par
+                              assidu 
+                           </p>
+                           <p>l.47 : e ses
+                              oroisons Et se vos eussiez veue la
+                              
+                           </p>
+                           <p>l.48 : vie qil menoit et&nbsp;
+                              quel avoit commenciee a a-
+                           </p>
+                           <p>l.49 : mener et mena puis tote sa
+                              vie Aos-
+                           </p>
+                           <p>l.50 : deissiez que cele qil avoit
+                              devant menee es-
+                           </p>
+                           <p>l.51 : toit eninis ceste molt deliteuse Et cels
+                              quel 
+                           </p>
+                           <p>l.52 : avoit desoz lui
+                              commenciez a garder menoit 
+                           </p>
+                           <p>l.53 : il fi
+                              doucement et par si douce maniere quel-
+                           </p>
+                           <p>l.54 : le doutoient plus&nbsp;et en
+                              noroient par la grant 
+                           </p>
+                           <p>l.55 : amor qil avoient a lui que par la
+                              poor dont 
+                           </p>
+                           <p>l.56 : il le
+                              cremissent Et qi porroit dire ne
+                              escine 
+                           </p>
+                           <p>l.57 : la grant foi ne la
+                              grant charite que&nbsp;nostre&nbsp;sire 
+                           </p>
+                           <p>l.58 : avoit en lui mise Tant a la
+                              renomee 
+                           </p>
+                           <p>l.59 : de lui et la loenge de
+                              sa religion quele par-
+                           </p>
+                           <p>l.60 : vint as oreilles <a href="Ccharlemeine#" title="Autres formes du nom : Charlemagne Carolus Magnus Charles Ier  , rois des Francs ,  milieu du VIIIe&#xA;                        siècle - 28 janvier 814" data-toggle="tooltip" data-placement="top">Charlemeine</a> qi a donc 
+                           </p>
+                           <p>l.61 : estoit rois de France. Qant li rois oi par-</p>
+                           <p>l.62 : ler de seiint Gile qi si estoit
+                              preudom et&nbsp;si se-
+                           </p>
+                           <p>l.63 : inte vie menoit. Il
+                              desirra molt a parler 
+                           </p>
+                           <p>l.64 : a lui.
+                              Si li tramist&nbsp;ses
+                              messagiers et man-
+                           </p>
+                           <p>l.65 : da par molt douce maniere qil ne le
+                              fast
+                           </p>
+                           <p>l.66 : mie qil ne
+                              venist&nbsp;visiter le.
+                              Qant li seinz 
+                           </p>
+                           <p>l.67 :  hom oi
+                              les messages que li rois le mandoit
+                              
+                           </p>
+                           <p>l.68 : en tel maniere il atorna ses
+                              choses et
+                           </p>
+                           <p>l.69 : tant ala qil
+                              vint a orliens
+                              la halnera 
+                           </p>
+                           <p>l.70 : il une nuit. Mes
+                              tantost com il vint 
+                           </p>
+                           <p>l.71 : en la cite ala il au mostier de seinte </p>
+                           <p>l.72 : croiz por fere ses oroisons
+                              et meintenant 
+                           </p>
+                           <p>l.73 : qil fu entrez en
+                              l'eglise Ans desuez 
+                           </p>
+                           <p>l.74 : qi estoit fors del sens commenca
+                              en un an-
+                           </p>
+                           <p>l.75 : gle des
+                              mostier a crier molt orrible-
+                           </p>
+                           <p>l.76 : ment par le deable qil avoit au
+                              cors 
+                           </p>
+                           <p>l.77 : et fi
+                              dist&nbsp;Heuheu <a href="se%C4%ABint%0A                        Ggiles#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip" data-placement="top">seint
+                                 Giles</a> com je 
+                           </p>
+                           <p>l.78 : sueffre par toi grant tormenz.
+                              Encore 
+                           </p>
+                           <p>l.79 : ne soit ta
+                              jostice contraire a mes lois
+                              les-
+                           </p>
+                           <p>l.80 : se un pou
+                              tes oroisons a fere tant qe je
+                              
+                           </p>
+                           <p>l.81 : aie congie de ti partir et de
+                              tenir ma vo-
+                           </p>
+                           <p>l.82 : ie. Car
+                              la ou je sui ici enclos si sui
+                              je par
+                           </p>
+                           <p>l.83 : toi
+                              tormentez molt griefment.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="edition_centre">
+                     <div class="col-sm">
+                        <h4 class="titre_div">Version allographétique</h4>
+                        <div class="scroll-div">
+                           <p>l.1 : Qant il orēt aſſez a lui
+                              parle 
+                           </p>
+                           <p>l.2 : de pluseurs choſes il
+                              ſe miſtrēt 
+                           </p>
+                           <p>l.3 : en
+                              ſes oꝛoiſons ⁊ aṕs
+                              ſen parti-
+                           </p>
+                           <p>l.4 : rent. Qant il ſenfurēt partiz li
+                              ſeinz 
+                           </p>
+                           <p>l.5 : hom ſenti qil
+                              eſtoit molt afebloiez por 
+                           </p>
+                           <p>l.6 : la doleur de
+                              ſa plaie ſi pꝛoia a nr̃e&nbsp;
+                              ſeig-
+                           </p>
+                           <p>l.7 : neur. Qe
+                              iames en ceſt ſiecle ne li
+                              fuſt
+                           </p>
+                           <p>l.8 : plus grāt ſante
+                              rendue tant com il ue-
+                           </p>
+                           <p>l.9 : ſqiſt.&nbsp;Et li rois uenoit molt
+                              souent a 
+                           </p>
+                           <p>l.10 : lui aṕs ce
+                              poꝛ lui uisiter ⁊ poꝛ oir
+                              ſes ſeī-
+                           </p>
+                           <p>l.11 : tes paroles ⁊&nbsp;ſi li offroit ⁊&nbsp;
+                              uouloit don-
+                           </p>
+                           <p>l.12 : ner
+                              graāz auoirs ⁊ grāz richeces a
+                              ſes 
+                           </p>
+                           <p>l.13 : li seīz hom
+                              nē&nbsp;uoloit nule reconue eniz 
+                           </p>
+                           <p>l.14 : li diſoit qil feiſt aucune eglise ou il
+                              me-
+                           </p>
+                           <p>l.15 : iſt
+                              pꝛeudes homes qi deſoz regle
+                              ueſq̇ſſēt
+                              
+                           </p>
+                           <p>l.16 : ⁊ qi nr̃e&nbsp;
+                              ſeignoꝛ fuiſſēt nuit
+                              ⁊&nbsp;ior Li ro-
+                           </p>
+                           <p>l.17 : is li
+                              reſpondoit qil le feroit uolentiers 
+                           </p>
+                           <p>l.18 : s'il en uouloit eſtre
+                              ṕstres ⁊ goúernierres 
+                           </p>
+                           <p>l.19 : <a href="#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip">ſeīz
+                                 giles</a> refuſa molt ceſte
+                              choſe en 
+                           </p>
+                           <p>l.20 : pluseurs manieres mes tant
+                              lemeńēt 
+                           </p>
+                           <p>l.21 : par diz
+                              ⁊ par paroles ⁊ par eſſamples
+                              
+                           </p>
+                           <p>l.22 : qil li moſtrerēt
+                              uouviſt ou ne uouviſt
+                           </p>
+                           <p>l.23 : loꝛ otroia
+                              loꝛ&nbsp;uolente Dont fiſt li rois
+                              q̇
+                           </p>
+                           <p>l.24 : molt liez en fu fere –II- molt teles egliſe </p>
+                           <p>l.25 : ſi com <a href="#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip">ſeīz
+                                 giles</a> lor enſeigna les leus 
+                           </p>
+                           <p>l.26 : ou len les deuoit fere L&nbsp;une
+                              enlaneur 
+                           </p>
+                           <p>l.27 : seīt pere
+                              lapoſtre ⁊ lautre en lenneur
+                           </p>
+                           <p>l.28 : <a href="#" title="Autres formes du nom : seint Priu Priest de Clermont Priest d'Auvergne saint Prix saint Projet saint Préjet saint Prist Projectus  , évêque ,  625 - 676" data-toggle="tooltip">ſeīt
+                                 Pꝛiu le martir</a>&nbsp; Cele fu eſtablie
+                              ioſ-
+                           </p>
+                           <p>l.29 : te la foſſee del
+                              ſeīt home ⁊ la fu il toz les 
+                           </p>
+                           <p>l.30 : ioꝛz de ſa
+                              uie en ieunes ⁊ en
+                              ueilles ⁊ en 
+                           </p>
+                           <p>l.31 : oꝛoisons ⁊ en pꝛoieres La
+                              ſaſſembler-
+                           </p>
+                           <p>l.32 : ent o un ṕudome ⁊ seīt home por
+                              nr̃e
+                           </p>
+                           <p>l.33 : ſeignor fuir felonc la ruigle de
+                              moinſ-
+                           </p>
+                           <p>l.34 : nage Et li
+                              <a href="#" title="Autres formes du nom : Flavius Authari  , rois des Lombards ,  555 - 590" data-toggle="tooltip">rois flauiꝯ</a> lor
+                              dōna la t́re 
+                           </p>
+                           <p>l.35 : .V. luies enuiron eus aoes
+                              loꝛ uſages 
+                           </p>
+                           <p>l.36 : Poꝛce qil auint une foiz qil uolt
+                              par-
+                           </p>
+                           <p>l.37 : ler au seīt home.
+                              ⁊ li seīz hom uint en 
+                           </p>
+                           <p>l.38 : cōtre lui .V.
+                              luies de t́re Et poꝛ li otro-
+                           </p>
+                           <p>l.39 : ia li rois ⁊ dona tote ſi
+                              com pluseurs 
+                           </p>
+                           <p>l.40 : le racontent.</p>
+                           <p>l.41 : Pꝛes ce fu <a href="#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip">ſeīz giles</a> oꝛdenez
+                              
+                           </p>
+                           <p>l.42 : aṕstre par la pꝛoiere de
+                              ſes moi-
+                           </p>
+                           <p>l.43 : nes
+                              ⁊ de toz les hauz barons del 
+                           </p>
+                           <p>l.44 : reigne ⁊ meeſmemēt de tot le
+                              pueple. 
+                           </p>
+                           <p>l.45 : Dont ṕmes ꝯmēca
+                              ſon coꝛs a amegrir 
+                           </p>
+                           <p>l.46 : par
+                              ieunes ⁊ par ueilles ⁊ par
+                              aſſidu 
+                           </p>
+                           <p>l.47 : e ſes
+                              oꝛoisons Et se uos eussiez ueue la
+                              
+                           </p>
+                           <p>l.48 : uie qil menoit ⁊&nbsp;
+                              q̇l auoit ꝯmēciee a a-
+                           </p>
+                           <p>l.49 : mener ⁊ mena puis tote ſa
+                              uie Aos-
+                           </p>
+                           <p>l.50 : deiſſiez q̇ cele qil auoit
+                              deuāt menee es-
+                           </p>
+                           <p>l.51 : toit enīis ceſte molt deliteuſe Et cels
+                              q̇l 
+                           </p>
+                           <p>l.52 : auoit deſoz lui
+                              ꝯmēciez a garder menoit 
+                           </p>
+                           <p>l.53 : il fi
+                              doucemēt ⁊ par ſi douce maniere q̇l-
+                           </p>
+                           <p>l.54 : le doutoiēt plꝯ&nbsp;⁊ en
+                              noꝛoiēt par la grāt 
+                           </p>
+                           <p>l.55 : amoꝛ qil auoiēt a lui q̇ par la
+                              pooꝛ dont 
+                           </p>
+                           <p>l.56 : il le
+                              cremiſſēt Et qi poꝛroit dire ne
+                              eſcīe 
+                           </p>
+                           <p>l.57 : la grāt foi ne la
+                              grāt charite q̇&nbsp;nr̃e&nbsp;ſire 
+                           </p>
+                           <p>l.58 : auoit en lui miſe Tant a la
+                              renomee 
+                           </p>
+                           <p>l.59 : de lui ⁊ la loenge de
+                              ſa religion q̇le par-
+                           </p>
+                           <p>l.60 : uint as oꝛeilles <a href="#" title="Autres formes du nom : Charlemagne Carolus Magnus Charles Ier  , rois des Francs ,  milieu du VIIIe&#xA;                        siècle - 28 janvier 814" data-toggle="tooltip">charlemeine</a> qi a donc 
+                           </p>
+                           <p>l.61 : estoit rois de frāce. Qant li rois oi par-</p>
+                           <p>l.62 : ler de ſeiīt gile qi si estoit
+                              ṕudom ⁊&nbsp;ſi ſe-
+                           </p>
+                           <p>l.63 : inte uie menoit. Il
+                              deſirra molt a ꝑler 
+                           </p>
+                           <p>l.64 : a lui.
+                              Si li tramiſt&nbsp;ſes
+                              meſſagiers ⁊ mā-
+                           </p>
+                           <p>l.65 : da par molt douce maniere qil ne le
+                              faſt
+                           </p>
+                           <p>l.66 : mie qil ne
+                              ueniſt&nbsp;uiſiter le.
+                              Qāt li ſeīz 
+                           </p>
+                           <p>l.67 :  hom oi
+                              les meſſages q̇ li rois le mādoit
+                              
+                           </p>
+                           <p>l.68 : en tel maniere il atoꝛna ſes
+                              choſes ⁊
+                           </p>
+                           <p>l.69 : tant ala qil
+                              uint a oꝛliens
+                              la halńa 
+                           </p>
+                           <p>l.70 : il une nuit. Mes
+                              tantoſt com il uīt 
+                           </p>
+                           <p>l.71 : en la cite ala il au moſtier de ſeinte </p>
+                           <p>l.72 : croiz por fere ses oꝛoiſōs
+                              ⁊ meintenāt 
+                           </p>
+                           <p>l.73 : qil fu entrez en
+                              legliſe Ans deſuez 
+                           </p>
+                           <p>l.74 : qi eſtoit foꝛs del ſens ꝯmēca
+                              en un an-
+                           </p>
+                           <p>l.75 : gle deſ
+                              moſtier a crier molt oꝛrible-
+                           </p>
+                           <p>l.76 : mēt par le deable qil auoit au
+                              coꝛs 
+                           </p>
+                           <p>l.77 : ⁊ fi
+                              diſt&nbsp;Heuheu <a href="#" title="Autres formes du nom : seint Giles saint Gilles Ægidius sant Geli  , saint ,  640 - 720" data-toggle="tooltip">seīt
+                                 giles</a> com ie 
+                           </p>
+                           <p>l.78 : ſueffre par toi grāt toꝛmēz.
+                              Encore 
+                           </p>
+                           <p>l.79 : ne ſoit ta
+                              ioſtice cōtraire a mes lois
+                              leſ-
+                           </p>
+                           <p>l.80 : ſe un pou
+                              tes oꝛoiſons a fere tāt qe ie
+                              
+                           </p>
+                           <p>l.81 : aie cōgie de ti partir ⁊ de
+                              tenir ma uo-
+                           </p>
+                           <p>l.82 : ie. Car
+                              la ou ie ſui ici enclos ſi ſui
+                              ie ꝑ
+                           </p>
+                           <p>l.83 : toi
+                              toꝛmētez molt griefment.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="container"><br><br><div class="col-sm"><a href="./Suite_n_4_de_la_vie_de_saint_Gilles-XML_TEI2xsl.xml" class="btn btn-primary" role="button" aria-pressed="true">Source XML-TEI</a></div><br><div class="col-sm"><a href="./odd-saintGilles.html" class="btn btn-primary" role="button" aria-pressed="true">Accéder à l'ODD</a></div>
+      </div>
+      <footer class="page-footer"><br><br><div class="footer-copyright text-center py-3">
+            <p>ENCODÉ EN XML-TEI PAR LUCAS TERRIEL, MTNAH, ECOLE NATIONALE DES CHARTES, prom. 2020</p><a href="http://www.chartes.psl.eu/fr" target="_blank"><img src="./images/logo-ENC.png" alt="logo Ecole nationale des chartes" title="Ecole nationale des chartes" width="90"></a><a href="https://github.com/Lucaterre/Projet-Edition_XML-TEI_Ms411_f173a-f173c_StGilles.git" target="_blank"><img width="60" src="./images/GitHub-Mark-120px-plus.png" title="Fork me on GITHUB !" class="img-fluide" alt="Fork me on GitHub" data-recalc-dims="1"></a><a href="https://tei-c.org/guidelines/" target="_blank"><img src="images/TEI-logo.png" width="60" title="Guidelines TEI P5" class="img-fluide"></a></div>
+      </footer><script type="text/javascript">
+                    function changeVersion(e, ver) {
+                    var ovnodes = document.getElementsByClassName("ov");
+                    var rvnodes = document.getElementsByClassName("rv");
+                    if (ver === "ov") {
+                    for (var i = 0; i < ovnodes.length; i++) {
+                    var el = ovnodes[i];
+                    el.style.display = "inline";
+                    }
+                    for (var i = 0; i < rvnodes.length; i++) {
+                    var el = rvnodes[i];
+                    el.style.display = "none";
+                    }
+                    } else if (ver === "rv") {
+                    for (var i = 0; i < ovnodes.length; i++) {
+                    var el = ovnodes[i];
+                    el.style.display = "none";
+                    }
+                    for (var i = 0; i < rvnodes.length; i++) {
+                    var el = rvnodes[i];
+                    el.style.display = "inline";
+                    }
+                    }
+                    var btnVersions = document.querySelectorAll("#tabs-versions button");
+                    for (var i = 0; i < btnVersions.length; i++) {
+                    var el = btnVersions[i];
+                    el.className = el.className.replace(" active", "");
+                    }
+                    e.currentTarget.className += " active";
+                    }
+                    
+                    function changeSection(e, sec) {
+                    var sections = document.getElementsByClassName("section-wrapper");
+                    for (var i = 0; i < sections.length; i++) {
+                    var el = sections[i];
+                    if (el.dataset.section == sec)
+                    el.style.display = "inline-block";
+                    else el.style.display = "none";
+                    }
+                    var btnSections = document.querySelectorAll("#tabs-sections button");
+                    for (var i = 0; i < btnSections.length; i++) {
+                    var el = btnSections[i];
+                    el.className = el.className.replace(" active", "");
+                    }
+                    e.currentTarget.className += " active";
+                    }
+                    
+                    document.getElementById("rvBtn").click();
+                    document.querySelector("#tabs-sections button:first-child").click();
+                </script><script type="text/javascript">
+                    $(document).ready(function(){
+                    $('[data-toggle="tooltip"]').tooltip();   
+                    });
+                </script></body>
+</html>
