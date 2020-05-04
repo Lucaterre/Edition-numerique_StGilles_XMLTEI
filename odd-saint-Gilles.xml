@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:s="http://purl.oclc.org/dsdl/schematron" xml:lang="en">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
    <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -41,12 +41,12 @@
                      selon les besoins propres à un projet;</item>
                   <item>Intégration à un corpus à des fins scientifiques (TAL, apprentissage
                      supervisé...);</item>
-                  <item>Etendre et améliorer ces propositions d'encodage à d'autres corpus de textes issus
-                     d'un manuscrit de la même époque.</item>
+                  <item>Etendre et améliorer ces propositions d'encodage à d'autres corpus de textes
+                     issus d'un manuscrit de la même époque.</item>
                </list>
-               <p>Afin de poursuivre ces buts nous proposons un schéma, issu de choix
-                  d'encodage, discutables, mais qui à l'avantage de représenter les différentes métadonnées du manuscrit et la
-                  structure interne et externe du texte.</p>
+               <p>Afin de poursuivre ces buts nous proposons un schéma, issu de choix d'encodage,
+                  discutables, mais qui à l'avantage de représenter les différentes métadonnées du
+                  manuscrit et la structure interne et externe du texte.</p>
             </div2>
             <div2>
                <head>Descriptif du schéma</head>
@@ -54,8 +54,8 @@
                      référer directement au fichier XML.</emph></p>
                <div3>
                   <head>Structure du <gi>teiHeader</gi></head>
-                  <p>L'élement racine <gi>TEI</gi>, contient l'élément <gi>teiHeader</gi> qui contient les
-                     éléments suivantes : <specList>
+                  <p>L'élement racine <gi>TEI</gi>, contient l'élément <gi>teiHeader</gi> qui
+                     contient les éléments suivantes : <specList>
                         <specDesc key="fileDesc"/>
                         <specDesc key="encodingDesc"/>
                         <specDesc key="profileDesc"/>
@@ -93,9 +93,10 @@
                      forme d'une image, une segmentation des lignes sur l'image à été effectuée
                      grâce aux outils <ref target="http://teicat.huma-num.fr/zoner.php">Tei
                         Zoner</ref> et Gimp. Puis un lien iiif est construit afin de récupérer la
-                     source de l'image avec une résolution demandée et placé dans l'attribut <att>url</att> de l'élément <gi>graphic</gi>. Enfin,
-                     dans le <gi>text</gi> les coordonnées extraites sont rapportés sur les éléments
-                        <gi>lb</gi> sur son attribut <att>facs</att></p>
+                     source de l'image avec une résolution demandée et placé dans l'attribut
+                        <att>url</att> de l'élément <gi>graphic</gi>. Enfin, dans le <gi>text</gi>
+                     les coordonnées extraites sont rapportés sur les éléments <gi>lb</gi> sur son
+                     attribut <att>facs</att></p>
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                      <facsimile>
                         <surface xml:id="f173a">
@@ -115,27 +116,29 @@
                      sémantique et externe du document</p>
                   <div4>
                      <head>Les éléments de mise en page</head>
-                     <p>Le document est structuré dans l'élément <gi>text</gi> qui contient l'élément
-                           <gi>body</gi> selon le modèle suivant : <list>
-                           <item><gi>div</gi> qui reçoit les attriubts <att>type</att> et <att>facs</att> :
-                              correspond ici au manuscrit disponible sur gallica dans lequel le
-                              passage est encodé</item>
-                           <item><gi>div</gi> qui reçoit les attributs <att>type</att> : qui correspond à la zone
-                              du texte transcrit</item>
-                           <item><gi>pb</gi> qui reçoit les attributs <att>facs</att> et <att>n</att> : corespond
-                              à la page du passage encodé</item>
-                           <item><gi>cb</gi> qui reçoit l'attribut <att>n</att> : correspond à la colonne qui
-                              est encodée</item>
+                     <p>Le document est structuré dans l'élément <gi>text</gi> qui contient
+                        l'élément <gi>body</gi> selon le modèle suivant : <list>
+                           <item><gi>div</gi> qui reçoit les attriubts <att>type</att> et
+                                 <att>facs</att> : correspond ici au manuscrit disponible sur
+                              gallica dans lequel le passage est encodé</item>
+                           <item><gi>div</gi> qui reçoit les attributs <att>type</att> : qui
+                              correspond à la zone du texte transcrit</item>
+                           <item><gi>pb</gi> qui reçoit les attributs <att>facs</att> et
+                                 <att>n</att> : corespond à la page du passage encodé</item>
+                           <item><gi>cb</gi> qui reçoit l'attribut <att>n</att> : correspond à la
+                              colonne qui est encodée</item>
                            <item><gi>p</gi> qui reçoit un <att>n</att> : correspond au paragraphe
                               qui est encodé <list>
-                                 <head>Le texte structuré dans l'élément <gi>p</gi> peut contenir :</head>
-                                 <item>L'élément <gi>hi</gi> avec un attribut <att>rend</att> qui reçoit la valeur
-                                   <val>indent</val> : qui correspond à une partie du paragraphe <gi>p</gi>
-                                    qui est indenté</item>
-                                 <item>L'élément <gi>lb</gi> avec un <att>facs</att> pour rapporter les
-                                    segments de la zone <gi>facsimile</gi> et/ou un <att>break</att>
-                                    avec la valeur <val>no</val> pour signifier un mot rejeté à la
-                                    ligne suivante</item>
+                                 <head>Le texte structuré dans l'élément <gi>p</gi> peut contenir
+                                    :</head>
+                                 <item>L'élément <gi>hi</gi> avec un attribut <att>rend</att> qui
+                                    reçoit la valeur <val>indent</val> : qui correspond à une partie
+                                    du paragraphe <gi>p</gi> qui est indenté</item>
+                                 <item>L'élément <gi>lb</gi> avec un
+                                       <att>break</att> avec la valeur <val>no</val> pour signifier
+                                    un mot rejeté à la ligne suivante</item>
+                                 <item>L'élément <gi>seg</gi> avec un attribut <att>facs</att> pour rapporter 
+                                 les différents segments</item>
                               </list></item>
                         </list> Set d'éléments utilisé dans la structuration du document : <specList>
                            <specDesc key="div" atts="type facs"/>
@@ -143,7 +146,8 @@
                            <specDesc key="cb" atts="n"/>
                            <specDesc key="p"/>
                            <specDesc key="hi" atts="rend"/>
-                           <specDesc key="lb" atts="facs break"/>
+                           <specDesc key="lb" atts="break"/>
+                           <specDesc key="seg" atts="facs"/>
                         </specList></p>
                      <egXML xmlns="http://www.tei-c.org/ns/Examples">
                         <text>
@@ -163,7 +167,7 @@
                            </body>
                         </text>
                      </egXML>
-                  </div4> 
+                  </div4>
                   <div4>
                      <head>Une représentation du système graphique pour l'analyse paléographique et
                         linguistique</head>
@@ -183,21 +187,23 @@
                         </list> Il est possible de préciser le type de l'élément <gi>abbr</gi> qui
                         peut reçoit obligatoirement un attribut <att>type</att>. Pour les <ref
                            target="https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-abbr.html"
-                           >valeurs</ref> de l'attribut <att>type</att> des abréviations se référer aux TEI guidelines.
-                        Les initiales sont intégralement restitués en dehors de l'élément <gi>choice</gi>, par l'élément <gi>c</gi> qui peut recevoir
-                        l'attribut <att>type</att> qui porte obligatoirement la valeur <val>initial</val>.
-                        <specList>
+                           >valeurs</ref> de l'attribut <att>type</att> des abréviations se référer
+                        aux TEI guidelines. Les initiales sont intégralement restitués en dehors de
+                        l'élément <gi>choice</gi>, par l'élément <gi>c</gi> qui peut recevoir
+                        l'attribut <att>type</att> qui porte obligatoirement la valeur
+                           <val>initial</val>. <specList>
                            <specDesc key="c" atts="type"/>
-                        </specList>Pour faciliter l'encodage, on spécifie une DTD au début du document afin de créer
-                        des entités qui contiennent les différentes représentations graphiques du
-                        texte. <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        </specList>Pour faciliter l'encodage, on spécifie une DTD au début du
+                        document afin de créer des entités qui contiennent les différentes
+                        représentations graphiques du texte. <egXML
+                           xmlns="http://www.tei-c.org/ns/Examples">
                            <!-- Exemple pour les abbréviations -->
                            <choice><abbr type="suspension"
                               >&#275;</abbr><expan>e<ex>n</ex></expan></choice>
                            <!-- Exemple pour les allographes -->
                            <choice><reg>r</reg><orig>&#42843;</orig></choice>
                            <!-- Exemple pour les initiales -->
-                           <c type='initial'>Q</c>
+                           <c type="initial">Q</c>
                         </egXML></p>
                   </div4>
                   <div4>
@@ -212,7 +218,8 @@
                            <specDesc key="pc"/>
                         </specList></p>
                      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <choice><reg><pc>--ici un espace--</pc></reg><orig>--absence de contenu--</orig></choice>
+                        <choice><reg><pc>--ici un espace--</pc></reg><orig>--absence de
+                              contenu--</orig></choice>
                      </egXML>
                   </div4>
                </div3>
@@ -255,6 +262,11 @@
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
                      <attDef ident="unit" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="between_columns"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="dim" mode="change">
@@ -501,6 +513,11 @@
                      <attDef ident="notAfter" mode="delete"/>
                      <attDef ident="from" mode="delete"/>
                      <attDef ident="to" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="key" mode="delete"/>
                      <attDef ident="ref" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
@@ -515,6 +532,11 @@
                      <attDef ident="notAfter" mode="delete"/>
                      <attDef ident="from" mode="delete"/>
                      <attDef ident="to" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="key" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
                   </attList>
@@ -523,6 +545,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="key" mode="delete"/>
                      <attDef ident="ref" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
@@ -532,6 +559,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="key" mode="delete"/>
                      <attDef ident="ref" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
@@ -546,6 +578,11 @@
                      <attDef ident="to" mode="delete"/>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="key" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
                   </attList>
@@ -614,6 +651,11 @@
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="listPlace" mode="change">
@@ -621,6 +663,11 @@
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="occupation" mode="change">
@@ -715,10 +762,9 @@
                      <attDef ident="period" mode="delete"/>
                   </attList>
                </classSpec>
-               <classSpec ident="att.divLike" type="atts" mode="change">
+               <classSpec ident="att.editLike" type="atts" mode="change">
                   <attList>
-                     <attDef ident="org" mode="delete"/>
-                     <attDef ident="sample" mode="delete"/>
+                     <attDef ident="evidence" mode="delete"/>
                   </attList>
                </classSpec>
                <classSpec ident="att.media" type="atts" mode="change">
@@ -763,7 +809,6 @@
                </classSpec>
                <classSpec ident="att.personal" type="atts" mode="change">
                   <attList>
-                     <attDef ident="full" mode="delete"/>
                      <attDef ident="sort" mode="delete"/>
                   </attList>
                </classSpec>
@@ -774,19 +819,17 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
-                     <attDef ident="n" mode="change" usage="opt"/>
+                     <attDef ident="part" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="N"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="hi" mode="change">
-                  <constraintSpec scheme="schematron" ident="hi"> <!-- on pose que hi doit obligatoirement recevoir un élément lb -->
-                     <constraint>
-                        <s:assert test=".//tei:lb">un hi doit contenir au moins une ligne lb</s:assert>
-                     </constraint>
-                  </constraintSpec>
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
-                     <attDef ident="rend" mode="change"/>
                   </attList>
                </elementSpec>
                <elementSpec ident="mentioned" mode="change">
@@ -845,6 +888,11 @@
                      </attDef>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="cardinal"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="date" mode="change">
@@ -861,14 +909,14 @@
                </elementSpec>
                <elementSpec ident="abbr" mode="change">
                   <attList>
-                     <attDef ident="type" mode="change" usage="req">
+                     <attDef ident="type" mode="change">
                         <valList mode="add" type="closed">
                            <valItem ident="brevigraph"/>
                            <valItem ident="contraction"/>
                            <valItem ident="suspension"/>
                         </valList>
                      </attDef>
-                     <attDef ident="corresp" mode="delete" usage="req"/>
+                     <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
                      <attDef ident="type" mode="change">
                         <valList mode="add" type="closed">
@@ -908,7 +956,6 @@
                </elementSpec>
                <elementSpec ident="note" mode="change">
                   <attList>
-                     <attDef ident="anchored" mode="delete"/>
                      <attDef ident="targetEnd" mode="delete"/>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
@@ -928,22 +975,11 @@
                      <attDef ident="break" mode="delete"/>
                   </attList>
                </elementSpec>
-               <elementSpec ident="lb" mode="change"> <!-- Ici lb reçoit automatiquement un @facs -->
-                  <constraintSpec scheme="schematron" ident="lb">
-                     <constraint>
-                        <s:report test=".//tei:lb[@facs]">l'attribut @facs obligatoire sur lb</s:report>
-                     </constraint>
-                  </constraintSpec>
+               <elementSpec ident="lb" mode="change">
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="facs" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
-                     <attDef ident="facs" mode="change" usage="req"/> <!-- @facs obligatoire sur chaque ligne -->
-                     <attDef ident="break" mode="change" usage="opt"> <!-- @break optionnel sur chaque ligne -->
-                        <!-- ici on contraint l'usage de @break sur <lb/> avec pour valeur "no" -->
-                        <valList mode="add" type="closed">
-                           <valItem ident="no"/>
-                        </valList>
-                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="cb" mode="change">
@@ -974,8 +1010,6 @@
                         </valList>
                      </attDef>
                      <attDef ident="corresp" mode="delete"/>
-                     <attDef ident="key" mode="delete"/>
-                     <attDef ident="ref" mode="delete"/>
                      <attDef ident="type" mode="change">
                         <valList mode="add" type="closed">
                            <valItem ident="main"/>
@@ -984,6 +1018,8 @@
                            <valItem ident="web_ressource"/>
                         </valList>
                      </attDef>
+                     <attDef ident="key" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
                      <attDef ident="when" mode="delete"/>
                      <attDef ident="notBefore" mode="delete"/>
                      <attDef ident="notAfter" mode="delete"/>
@@ -1017,6 +1053,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="type" mode="delete"/>
                   </attList>
                </elementSpec>
@@ -1024,6 +1065,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="type" mode="delete"/>
                   </attList>
                </elementSpec>
@@ -1085,6 +1131,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="encodingDesc" mode="change">
@@ -1097,6 +1148,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="profileDesc" mode="change">
@@ -1121,6 +1177,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="language" mode="change">
@@ -1157,12 +1218,12 @@
                </elementSpec>
                <elementSpec ident="listChange" mode="change">
                   <attList>
-                     <attDef ident="ordered" mode="delete"/>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
                   </attList>
                </elementSpec>
+               <!--Checking module gaiji-->
                <!--Checking module verse-->
                <!--Checking module transcr-->
                <classRef key="att.coordinated"/>
@@ -1189,7 +1250,6 @@
                </elementSpec>
                <elementSpec ident="zone" mode="change">
                   <attList>
-                     <attDef ident="rotate" mode="delete"/>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
@@ -1210,6 +1270,18 @@
                </classSpec>
                <!--Checking module linking-->
                <classRef key="att.global.linking"/>
+               <moduleRef key="linking" include="seg"/>
+               <elementSpec ident="seg" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="part" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="N"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
                <classSpec ident="att.global.linking" type="atts" mode="change">
                   <attList>
                      <attDef ident="synch" mode="delete"/>
@@ -1227,6 +1299,11 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="part" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="N"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="type" mode="change">
                         <valList mode="add" type="closed">
                            <valItem ident="initial"/>
@@ -1241,6 +1318,11 @@
                      <attDef ident="pre" mode="delete"/>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="part" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="N"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="type" mode="delete"/>
                   </attList>
                </elementSpec>
@@ -1270,6 +1352,21 @@
                <elementSpec ident="div" mode="change">
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="org" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="uniform"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="sample" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="complete"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="part" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="N"/>
+                        </valList>
+                     </attDef>
                      <attDef ident="type" mode="change">
                         <valList mode="add" type="closed">
                            <valItem ident="manuscript"/>
@@ -1284,12 +1381,22 @@
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                <elementSpec ident="settingDesc" mode="change">
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="facs" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
             </schemaSpec>

@@ -45,7 +45,7 @@
         <!-- ** Récupération du chemin du fichier courant -->
         
         <xsl:variable name="witfile">
-            <xsl:value-of select="replace(base-uri(Suite_n_4_de_la_vie_de_saint_Gilles-XML_TEI2xsl),'.xml','')"/>
+            <xsl:value-of select="replace(base-uri(vieDeStGilles-TEI),'.xml','')"/>
         </xsl:variable>
         
         <!-- ** Chemin vers l'unique page web -->
@@ -380,14 +380,14 @@
                     <br/>
                     <br/>
                     <div class="col-sm">
-                        <a href="./Suite_n_4_de_la_vie_de_saint_Gilles-XML_TEI2xsl.xml"
-                            class="btn btn-primary" role="button" aria-pressed="true">Source
+                        <a href="./vieDeStGilles-TEI.xml"
+                            class="btn btn-primary" role="button" aria-pressed="true" target="_blank">Source
                             XML-TEI</a>
                     </div>
                     <br/>
                     <div class="col-sm">
-                        <a href="./odd-saintGilles.html" class="btn btn-primary" role="button"
-                            aria-pressed="true">Accéder à l'ODD</a>
+                        <a href="./odd-saint-Gilles.html" class="btn btn-primary" role="button"
+                            aria-pressed="true" target="_blank">Accéder à l'ODD</a>
                     </div>
                 </div>
 

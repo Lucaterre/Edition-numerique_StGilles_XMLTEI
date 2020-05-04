@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="out/odd-saint-Gilles.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 
 <!-- **Zone pour les entités** -->
 
@@ -57,6 +58,7 @@
 <!ENTITY In-P "<c type='initial'>P</c>">
 
 ]>
+
 
 
 
@@ -529,25 +531,25 @@
                      &u-dipl-v-norm;e&smallSlong;&qbar-que;&smallSlong;&smallSlong;&ebar-en;t
                      </seg><seg facs="#seg_16">&et-tironien; qi &nostre;&#160;
                      &smallSlong;eigno&minRrotunda; fui&smallSlong;&smallSlong;&ebar-en;t nuit
-                     &et-tironien;&#160;&i-dipl-j-norm;or &In-L;i ro<lb break="no"/></seg><seg facs="seg_17">is li
-                     re&smallSlong;pondoit qil le feroit &u-dipl-v-norm;olentiers </seg><seg
-                     facs="#seg_18">s'il en &u-dipl-v-norm;ouloit e&smallSlong;tre
-                     &p-acute-pre;stres &et-tironien; go&u-acute-ver;ernierres </seg><seg
-                     facs="#seg_19"><persName ref="#Saint_gilles">&smallSlong;e&ibar-in;z
-                        &gtoG;iles</persName> refu&smallSlong;a molt ce&ligaturelgST;e
-                     cho&smallSlong;e en </seg><seg facs="#seg_20">pluseurs manieres mes tant
-                     l&quote;eme&n-acute-ner;&ebar-en;t </seg><seg facs="#seg_21">par diz
-                     &et-tironien; par paroles &et-tironien; par e&smallSlong;&smallSlong;amples
-                     </seg><seg facs="#seg_22">qil li mo&ligaturelgST;rer&ebar-en;t
-                     &u-dipl-v-norm;ouvi&ligaturelgST; ou ne &u-dipl-v-norm;ouvi&ligaturelgST;
-                     </seg><seg facs="#seg_23">lo&minRrotunda; otroia
-                     lo&minRrotunda;&#160;&u-dipl-v-norm;olente &In-D;ont fi&ligaturelgST; li rois
-                     &qbar-que; </seg><seg facs="#seg_24">molt liez en fu fere –<num type="cardinal"
-                        value="2">II</num>- molt teles egli&smallSlong;e </seg><seg facs="#seg_25"
-                     >&smallSlong;i com <persName ref="#Saint_gilles">&smallSlong;e&ibar-in;z
-                        &gtoG;iles</persName> lor en&smallSlong;eigna les leus </seg><seg
-                     facs="#seg_26">ou len les de&u-dipl-v-norm;oit fere &In-L;&quote;&#160;une
-                     enlaneur </seg><seg facs="#seg_27">se&ibar-in;t pere
+                     &et-tironien;&#160;&i-dipl-j-norm;or &In-L;i ro<lb break="no"/></seg><seg
+                     facs="seg_17">is li re&smallSlong;pondoit qil le feroit
+                     &u-dipl-v-norm;olentiers </seg><seg facs="#seg_18">s'il en
+                     &u-dipl-v-norm;ouloit e&smallSlong;tre &p-acute-pre;stres &et-tironien;
+                     go&u-acute-ver;ernierres </seg><seg facs="#seg_19"><persName
+                        ref="#Saint_gilles">&smallSlong;e&ibar-in;z &gtoG;iles</persName>
+                     refu&smallSlong;a molt ce&ligaturelgST;e cho&smallSlong;e en </seg><seg
+                     facs="#seg_20">pluseurs manieres mes tant l&quote;eme&n-acute-ner;&ebar-en;t
+                     </seg><seg facs="#seg_21">par diz &et-tironien; par paroles &et-tironien; par
+                     e&smallSlong;&smallSlong;amples </seg><seg facs="#seg_22">qil li
+                     mo&ligaturelgST;rer&ebar-en;t &u-dipl-v-norm;ouvi&ligaturelgST; ou ne
+                     &u-dipl-v-norm;ouvi&ligaturelgST; </seg><seg facs="#seg_23">lo&minRrotunda;
+                     otroia lo&minRrotunda;&#160;&u-dipl-v-norm;olente &In-D;ont fi&ligaturelgST; li
+                     rois &qbar-que; </seg><seg facs="#seg_24">molt liez en fu fere –<num
+                        type="cardinal" value="2">II</num>- molt teles egli&smallSlong;e </seg><seg
+                     facs="#seg_25">&smallSlong;i com <persName ref="#Saint_gilles"
+                        >&smallSlong;e&ibar-in;z &gtoG;iles</persName> lor en&smallSlong;eigna les
+                     leus </seg><seg facs="#seg_26">ou len les de&u-dipl-v-norm;oit fere
+                     &In-L;&quote;&#160;une enlaneur </seg><seg facs="#seg_27">se&ibar-in;t pere
                      l&quote;apo&ligaturelgST;re &et-tironien; l&quote;autre en lenneur</seg>
                   <!-- corespond à la deuxième page du passage encodé -->
                   <pb facs="#173c" n="173back"/>
