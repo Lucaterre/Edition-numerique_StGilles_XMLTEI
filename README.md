@@ -2,7 +2,7 @@
 
 Projet d'une édition numérique XML-TEI du Ms411 de la BnF dans le cadre du cours de XML/TEI-XSLT du master Technologies numériques appliquées à l'histoire de l'Ecole nationale des chartes.
 
-![Edition logo](images/BDNF-stGilles.png)
+![Edition logo](images/BDNF-stGilles-4.jpg)
 
 ## Arborescence de l'édition numérique
 
