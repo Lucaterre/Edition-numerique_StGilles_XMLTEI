@@ -403,7 +403,7 @@
                         <a href="http://www.chartes.psl.eu/fr" target="_blank">
                             <img src="./images/logo-ENC.png" alt="logo Ecole nationale des chartes" title="Ecole nationale des chartes" width="90"/>
                         </a>
-                        <a href="https://github.com/Lucaterre/Projet-Edition_XML-TEI_Ms411_f173a-f173c_StGilles.git" target="_blank">
+                        <a href="https://github.com/Lucaterre/Edition-numerique_StGilles_XMLTEI.git" target="_blank">
                             <img width="60" src="./images/GitHub-Mark-120px-plus.png" title="Fork me on GITHUB !" class="img-fluide" alt="Fork me on GitHub" data-recalc-dims="1"/>
                         </a>
                         <a href="https://tei-c.org/guidelines/" target="_blank">
