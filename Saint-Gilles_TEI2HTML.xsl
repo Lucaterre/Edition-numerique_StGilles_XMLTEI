@@ -3,24 +3,60 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tei="http://www.tei-c.org/ns/1.0"
     xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="xs tei"
     version="2.0">
+    
+    <!-- *********************************************************** -->
+    <!-- Version 1-2020-05-04                                        -->
+    <!-- Le script suivant à été développé dans le cadre pédagogique -->
+    <!-- du cours d'XML-TEI/XSLT du master Technologies numériques   -->
+    <!-- appliquées à l'histoire de l'Ecole nationale des chartes    -->
+    <!-- http://www.chartes.psl.eu/                                  -->
+    <!-- *********************************************************** -->
+    <!--          Des Questions ?                                    -->
+    <!-- Lucas TERRIEL (@LucaTerre - Github)                         -->
+    <!-- *********************************************************** -->
+    <!-- Ce script est libre à la réutilisation selon les termes     -->
+    <!-- de la Creative Commons Attribution license.                 -->
+    <!-- *********************************************************** -->
+  
+    <xsl:output 
+        method="html" 
+        indent="yes" 
+        encoding="UTF-8"
+    />
 
-    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
-
-    <!-- Pour éviter les espaces -->
+    <!-- Pour la gestion des espaces -->
 
     <xsl:strip-space elements="*"/>
+    
+    <!-- TEMPLATE PRINCIPALE : Canevas HTML one-page -->
 
     <xsl:template match="/">
 
-        <!-- déclaration des variables -->
+        <!-- déclaration des variables utiles -->
 
         <xsl:variable name="title" select="descendant::titleStmt/title[@type = 'main_title']/text()"/>
+        
         <xsl:variable name="subtitle"
             select="descendant::titleStmt/title[@type = 'subtitle']/text()"/>
-
-        <!-- Template HTML one-page -->
-
-        <html lang="fr">
+        
+        <!-- ** Ici, on crée des variables pour les régles de sortie; l'édition n'est composé que d'une seule page dans le projet initial
+        mais au cas où l'on souhaiterai faire évoluer l'édition, nous laissons la possibilité de rajouter des pages-->
+        
+        <!-- ** Récupération du chemin du fichier courant -->
+        
+        <xsl:variable name="witfile">
+            <xsl:value-of select="replace(base-uri(Suite_n_4_de_la_vie_de_saint_Gilles-XML_TEI2xsl),'.xml','')"/>
+        </xsl:variable>
+        
+        <!-- ** Chemin vers l'unique page web -->
+        
+        <xsl:variable name="main_path">
+            <xsl:value-of select="concat($witfile, 'edition-numerique', '.html')"/>
+        </xsl:variable>
+     
+        <!-- ** HTML:HEAD ** -->
+        
+            <xsl:variable name="head">
             <head>
                 <meta charset="UTF-8"/>
                 <meta name="description">
@@ -36,7 +72,7 @@
                 <title>Edition XML-TEI de <xsl:value-of select="concat($title, ' - ', $subtitle)"
                     /></title>
 
-                <!-- Lien vers CDN CSS et Fonts -->
+                <!-- Lien vers CDN, CSS et Fonts -->
 
                 <link rel="stylesheet"
                     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -141,7 +177,7 @@
                 <style>
                     
                     /** Style pour facsimilé interactif **/
-                    /** Hack du dépot : @ **/
+                    
                     
                     h1 {
                     text-align: center;
@@ -197,12 +233,12 @@
                     visibility: visible;
                     }
                     
-                    /* Original version (ov) */
+                    /* version originale (ov) */
                     .ov {
                     color: crimson;
                     }
                     
-                    /* Regularized version (rv) */
+                    /* version régularisée (rv) */
                     .rv {
                     color: mediumseagreen;
                     }
@@ -213,21 +249,21 @@
                     }
                     
                 </style>
-
             </head>
+            </xsl:variable>
+        
+        <!-- ** HTML:BODY ** -->
+        
+        <xsl:variable name="body">
             <body>
-
-
-                <!-- header -->
-
+                
+                <!-- *** jumbotron de présentation -->
+                
                 <div class="jumbotron jumbotron-fluid part_header">
-
                     <div class="container">
-
                         <h1 class="titre_head">
                             <xsl:value-of select="concat($title, ' - ', $subtitle)"/>
                         </h1>
-
                         <br/>
                         <br/>
                         <hr class="shine"/>
@@ -236,8 +272,9 @@
                         <br/>
                         <br/>
                         <br/>
-                        <!-- Menu : Navbar -->
-
+                        
+                        <!-- *** menu navbar -->
+                        
                         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
@@ -255,12 +292,9 @@
                                     </li>
                                 </ul>
                             </div>
-
                         </nav>
                     </div>
                 </div>
-
-
                 <br/>
                 <br/>
                 <br/>
@@ -269,7 +303,7 @@
                 <br/>
                 <br/>
 
-                <!-- appel pour les métadonnées -->
+                <!-- *** partie métadonnées -->
 
                 <div class="container">
                     <div class="div-acceuil reveal" id="metadonnees">
@@ -283,7 +317,7 @@
                     </div>
                 </div>
 
-                <!-- appel pour l'image intéractive -->
+                <!-- *** partie facsimile interactif -->
 
                 <div class="container" id="facsimile">
                     <h3 class="titre_div">Fac-similé intéractif</h3>
@@ -298,19 +332,11 @@
                             <xsl:value-of select="descendant::surrogates/bibl/title"/>
                         </a>
                     </p>
-
                 </div>
-
-
-
-
-
-
-
-
-
                 <xsl:apply-templates select="descendant::facsimile"/>
-
+                
+                <!-- *** partie transcription régularisée et allographétique-->
+                
                 <div class="container" id="edition">
                     <div class="div-acceuil reveal">
                         <br/>
@@ -324,25 +350,22 @@
                                 <div class="edition_centre">
                                     <div class="col-sm">
 
-                                        <!-- div pour la version régularisée -->
+                                        <!-- **** Version régularisée -->
+                                        
                                         <h4 class="titre_div">Version régularisée</h4>
                                         <div class="scroll-div">
-                                            <xsl:apply-templates
-                                                select="descendant::text/body/div/div/p[@n]"
-                                                mode="graphNormalize"/>
+                                            <xsl:apply-templates select="descendant::text/body/div/div/p[@n]" mode="graphNormalize"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="edition_centre">
                                     <div class="col-sm">
 
-                                        <!-- div pour le texte régularisée -->
+                                        <!-- **** Version allographétique -->
+                                        
                                         <h4 class="titre_div">Version allographétique</h4>
                                         <div class="scroll-div">
-
-                                            <xsl:apply-templates
-                                                select="descendant::text/body/div/div/p[@n]"
-                                                mode="graphOriginal"/>
+                                            <xsl:apply-templates select="descendant::text/body/div/div/p[@n]" mode="graphOriginal"/>
                                         </div>
                                     </div>
                                 </div>
@@ -350,6 +373,9 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- *** Accès à la source XML et à la spécification ODD-->
+                
                 <div class="container">
                     <br/>
                     <br/>
@@ -365,44 +391,31 @@
                     </div>
                 </div>
 
-                <!-- footer -->
-
+                <!-- *** footer -->
 
                 <footer class="page-footer">
                     <br/>
                     <br/>
                     <div class="footer-copyright text-center py-3">
-
                         <p>
-                            <xsl:value-of
-                                select="concat(normalize-space(substring-after(upper-case(descendant::encodingDesc/projectDesc), '411')), ', prom. 2020')"
-                            />
+                            <xsl:value-of select="concat(normalize-space(substring-after(upper-case(descendant::encodingDesc/projectDesc), '411')), ', prom. 2020')" />
                         </p>
-
-
                         <a href="http://www.chartes.psl.eu/fr" target="_blank">
-                            <img src="./images/logo-ENC.png" alt="logo Ecole nationale des chartes"
-                                title="Ecole nationale des chartes" width="90"/>
+                            <img src="./images/logo-ENC.png" alt="logo Ecole nationale des chartes" title="Ecole nationale des chartes" width="90"/>
                         </a>
-
-
-
-                        <a
-                            href="https://github.com/Lucaterre/Projet-Edition_XML-TEI_Ms411_f173a-f173c_StGilles.git"
-                            target="_blank">
-                            <img width="60" src="./images/GitHub-Mark-120px-plus.png"
-                                title="Fork me on GITHUB !" class="img-fluide"
-                                alt="Fork me on GitHub" data-recalc-dims="1"/>
+                        <a href="https://github.com/Lucaterre/Projet-Edition_XML-TEI_Ms411_f173a-f173c_StGilles.git" target="_blank">
+                            <img width="60" src="./images/GitHub-Mark-120px-plus.png" title="Fork me on GITHUB !" class="img-fluide" alt="Fork me on GitHub" data-recalc-dims="1"/>
                         </a>
                         <a href="https://tei-c.org/guidelines/" target="_blank">
-                            <img src="images/TEI-logo.png" width="60" title="Guidelines TEI P5"
-                                class="img-fluide"/>
+                            <img src="images/TEI-logo.png" width="60" title="Guidelines TEI P5" alt="Guidelines TEI P5" class="img-fluide"/>
                         </a>
-
-
                     </div>
                 </footer>
-                <!-- Script JS pour le fac-similé intéractif - hack du dépôt : @ -->
+                
+                <!-- SCRIPTS JS -->
+                
+                <!-- **fac-similé intéractif -->
+                
                 <script type="text/javascript">
                     function changeVersion(e, ver) {
                     var ovnodes = document.getElementsByClassName("ov");
@@ -454,61 +467,50 @@
                     document.querySelector("#tabs-sections button:first-child").click();
                 </script>
 
-                <!-- Script JS pour les infosbulles -->
+                <!-- ** infosbulles -->
 
                 <script type="text/javascript">
                     $(document).ready(function(){
                     $('[data-toggle="tooltip"]').tooltip();   
                     });
                 </script>
-
             </body>
-        </html>
+        </xsl:variable>
+        
+        <!-- SORTIE POUR LA PAGE PRINCIPAL -->
+        
+        <xsl:result-document href="{$main_path}">
+            <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
+            <html lang="fr">
+                <xsl:copy-of select="$head"/>
+                <xsl:copy-of select="$body"/>
+            </html>
+        </xsl:result-document>
+        
     </xsl:template>
-
-
-
-
-
-
-
-
-
-
-    <!-- template pour les métadonnées -->
+    
+    <!-- TEMPLATE POUR LES METADONNEES -->
+    
     <xsl:template match="msDesc">
         <h5 class="titre_div">Description générale</h5>
         <ul>
             <p>
                 <i>
-                    <xsl:value-of
-                        select="concat(descendant::origDate, ', ', //profileDesc/langUsage/language)"
-                    />
+                    <xsl:value-of select="concat(descendant::origDate, ', ', //profileDesc/langUsage/language)" />
                 </i>
             </p>
             <p>
                 <b>
-                    <xsl:value-of
-                        select="concat(descendant::head/title, ' - ', descendant::msItemStruct/title, ' par ', descendant::msItemStruct/author/forename, ' ', descendant::msItemStruct/author/surname)"
-                    />
+                    <xsl:value-of select="concat(descendant::head/title, ' - ', descendant::msItemStruct/title, ' par ', descendant::msItemStruct/author/forename, ' ', descendant::msItemStruct/author/surname)" />
                 </b>
             </p>
-            <p><b>Orig.</b> : <xsl:value-of
-                    select="concat(descendant::settlement, ', ', descendant::repository, ', ', descendant::idno[position() = 1], ', ', descendant::msItemStruct/locus)"
-                /></p>
+            <p><b>Orig.</b> : <xsl:value-of select="concat(descendant::settlement, ', ', descendant::repository, ', ', descendant::idno[position() = 1], ', ', descendant::msItemStruct/locus)" /></p>
         </ul>
         <h5 class="titre_div">Description technique</h5>
-        <ul>Longueur de la page : <xsl:value-of
-                select="concat(descendant::layoutDesc/layout/height, ' ', descendant::layoutDesc/layout/height/@unit)"
-            /></ul>
-        <ul>Largeur de la page : <xsl:value-of
-                select="concat(descendant::layoutDesc/layout/width, ' ', descendant::layoutDesc/layout/width/@unit)"
-            /></ul>
-        <ul>Nombres de colonnes par pages : <xsl:value-of
-                select="descendant::layoutDesc/layout/@columns"/></ul>
-        <ul>Dimension entre les colonnes : <xsl:value-of
-                select="concat(descendant::layoutDesc/layout/dimensions/dim, ' ', descendant::layoutDesc/layout/dimensions/dim/@unit)"
-            /></ul>
+        <ul>Longueur de la page : <xsl:value-of select="concat(descendant::layoutDesc/layout/height, ' ', descendant::layoutDesc/layout/height/@unit)" /></ul>
+        <ul>Largeur de la page : <xsl:value-of select="concat(descendant::layoutDesc/layout/width, ' ', descendant::layoutDesc/layout/width/@unit)" /></ul>
+        <ul>Nombres de colonnes par pages : <xsl:value-of select="descendant::layoutDesc/layout/@columns"/></ul>
+        <ul>Dimension entre les colonnes : <xsl:value-of select="concat(descendant::layoutDesc/layout/dimensions/dim, ' ', descendant::layoutDesc/layout/dimensions/dim/@unit)" /></ul>
         <ul>Marges : </ul>
         <xsl:for-each select="descendant::layoutDesc/layout[position() = 3]/list/item">
             <ul>
@@ -525,10 +527,7 @@
         </ul>
     </xsl:template>
 
-
-
-
-    <!-- template pour les images interactives -->
+    <!-- TEMPLATE POUR LE FAC-SIMILE INTERACTIF -->
 
     <xsl:template match="facsimile">
         <div id="tabs-versions" class="tabs">
@@ -552,6 +551,8 @@
                 <img src="{$url}" class="image_facsimile" style="border: 2mm solid black;"/>
                 <div class="zone-list">
                     <xsl:for-each select="zone">
+                        <!-- pour repositionner les les rectangles selon la position de l'image 
+                            on ajoute ou on retire aux ordonnées et aux abssices le nombre de pixels nécéssaires -->
                         <xsl:variable name="left" select="@ulx + 240"/>
                         <xsl:variable name="top" select="@uly + 12"/>
                         <xsl:variable name="width" select="number(@lrx) - number(@ulx)"/>
@@ -570,59 +571,43 @@
         </xsl:for-each>
     </xsl:template>
 
-
-    <!-- Template pour gérer la version normalisée du texte -->
+    <!-- TEMPLATE VERSION REGULARISEE -->
 
     <xsl:template match="p[@n]" mode="graphNormalize">
-
         <xsl:apply-templates mode="graphNormalize"/>
-
     </xsl:template>
 
     <xsl:template match="seg" mode="graphNormalize">
-        <xsl:variable name="numérotation">
+        <xsl:variable name="numerotation">
             <xsl:text>l.</xsl:text>
             <xsl:number count="seg" format="1" level="any"/>
             <xsl:text> : </xsl:text>
         </xsl:variable>
-
         <p>
-            <xsl:value-of select="$numérotation"/>
+            <xsl:value-of select="$numerotation"/>
             <xsl:apply-templates mode="graphNormalize"/>
         </p>
-
     </xsl:template>
 
-    <!-- règle pour les infobulles du mode régularisé -->
-
-
+    <!-- ** règle pour les infobulles du mode régularisé -->
 
     <xsl:template match="persName" mode="graphNormalize">
-
         <xsl:variable name="ref" select="@ref"/>
-        <xsl:variable name="autres_noms"
-            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/persName/text()"/>
-        <xsl:variable name="occupation"
-            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/occupation/text()"/>
-        <xsl:variable name="date_naissance"
-            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/birth/text()"/>
-        <xsl:variable name="date_mort"
-            select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/death/text()"/>
+        <xsl:variable name="autres_noms" select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/persName/text()"/>
+        <xsl:variable name="occupation" select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/occupation/text()"/>
+        <xsl:variable name="date_naissance" select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/birth/text()"/>
+        <xsl:variable name="date_mort" select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/death/text()"/>
         <xsl:for-each select=".">
-            <xsl:variable name="desc"
-                select="'Autres formes du nom :', $autres_noms, ',', $occupation, ', ', $date_naissance, '-', $date_mort"/>
+            <xsl:variable name="desc" select="'Autres formes du nom :', $autres_noms, ',', $occupation, ', ', $date_naissance, '-', $date_mort"/>
             <a href="{concat(., '#')}" title="{$desc}" data-toggle="tooltip" data-placement="top">
                 <xsl:apply-templates mode="graphNormalize"/>
             </a>
-
         </xsl:for-each>
     </xsl:template>
 
-
-
+    <!-- ** règle pour la récupération du texte en mode régularisé -->
 
     <xsl:template match="choice" mode="graphNormalize">
-
         <xsl:value-of
             select="
                 .//reg/text() |
@@ -634,31 +619,25 @@
     </xsl:template>
 
 
-    <!-- Template pour gérer la version allographétique du texte -->
+    <!-- TEMPLATE VERSION ALLOGRAPHETIQUE -->
 
     <xsl:template match="p[@n]" mode="graphOriginal">
-
         <xsl:apply-templates mode="graphOriginal"/>
-
     </xsl:template>
 
-
-
     <xsl:template match="seg" mode="graphOriginal">
-        <xsl:variable name="numérotation">
+        <xsl:variable name="numerotation">
             <xsl:text>l.</xsl:text>
             <xsl:number count="seg" format="1" level="any"/>
             <xsl:text> : </xsl:text>
         </xsl:variable>
         <p>
-
-            <xsl:value-of select="$numérotation"/>
+            <xsl:value-of select="$numerotation"/>
             <xsl:apply-templates mode="graphOriginal"/>
         </p>
-
     </xsl:template>
 
-    <!-- règle pour les infobulles du mode allographétique -->
+    <!-- ** règle pour les infobulles du mode allographétique -->
 
     <xsl:template match="persName" mode="graphOriginal">
 
@@ -677,14 +656,10 @@
             <a href="#" title="{$desc}" data-toggle="tooltip">
                 <xsl:apply-templates mode="graphOriginal"/>
             </a>
-
         </xsl:for-each>
     </xsl:template>
 
-
-
     <xsl:template match="choice" mode="graphOriginal">
-
         <xsl:value-of
             select="
                 .//abbr/text() |
@@ -693,17 +668,18 @@
         />
     </xsl:template>
 
+    <!-- TEMPLATES COMMUNES -->
 
-    <!-- règles communes à l'ensemble des modes -->
-
-    <!-- règle pour les <lb> -->
+    <!-- ** règle pour les <lb> -->
 
     <xsl:template match="descendant::lb" mode="#all">
         <xsl:text>-</xsl:text>
     </xsl:template>
+    
+    
+    <!-- TEMPLATES SPECIFIQUES -->
 
-
-    <!-- règles spécifiques pour le facsimilé intéractive -->
+    <!-- **règles  pour le contenu du facsimilé intéractive -->
 
     <xsl:template match="
             //abbr/text() |
@@ -712,8 +688,6 @@
             <xsl:value-of select="."/>
         </span>
     </xsl:template>
-
-
 
     <xsl:template
         match="
@@ -725,10 +699,5 @@
             <xsl:value-of select="."/>
         </span>
     </xsl:template>
-
-
-
-
-
-
+    
 </xsl:stylesheet>
