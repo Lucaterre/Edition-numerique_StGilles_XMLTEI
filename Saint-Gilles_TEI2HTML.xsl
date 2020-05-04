@@ -599,7 +599,7 @@
         <xsl:variable name="date_mort" select="ancestor::TEI/teiHeader/profileDesc/particDesc/listPerson/person[@xml:id = replace($ref, '#', '')]/death/text()"/>
         <xsl:for-each select=".">
             <xsl:variable name="desc" select="'Autres formes du nom :', $autres_noms, ',', $occupation, ', ', $date_naissance, '-', $date_mort"/>
-            <a href="{concat(., '#')}" title="{$desc}" data-toggle="tooltip" data-placement="top">
+            <a href="#" title="{$desc}" data-toggle="tooltip" data-placement="top">
                 <xsl:apply-templates mode="graphNormalize"/>
             </a>
         </xsl:for-each>
