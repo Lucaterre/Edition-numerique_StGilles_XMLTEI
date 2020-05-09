@@ -39,7 +39,7 @@
         <xsl:variable name="subtitle"
             select="descendant::titleStmt/title[@type = 'subtitle']/text()"/>
         
-        <!-- ** Ici, on crée des variables pour les régles de sortie; l'édition n'est composé que d'une seule page dans le projet initial
+        <!-- ** Ici, on créé des variables pour les régles de sortie; l'édition n'est composé que d'une seule page dans le projet initial
         mais au cas où l'on souhaiterai faire évoluer l'édition, nous laissons la possibilité de rajouter des pages-->
         
         <!-- ** Récupération du chemin du fichier courant -->
@@ -551,7 +551,7 @@
                 <img src="{$url}" class="image_facsimile" style="border: 2mm solid black;"/>
                 <div class="zone-list">
                     <xsl:for-each select="zone">
-                        <!-- pour repositionner les les rectangles selon la position de l'image 
+                        <!-- pour repositionner les rectangles selon la position de l'image 
                             on ajoute ou on retire aux ordonnées et aux abssices le nombre de pixels nécéssaires -->
                         <xsl:variable name="left" select="@ulx + 240"/>
                         <xsl:variable name="top" select="@uly + 12"/>
